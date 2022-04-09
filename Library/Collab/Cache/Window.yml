@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1
+MonoBehaviour:
+  m_ObjectHideFlags: 61
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffe70aba2e7074048aca5de573b64a59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SimpleSelectedItems:
+    m_Keys:
+    - Assets/MeshCombineWizard-master.meta
+    - Assets/MeshCombineWizard-master/License.txt
+    - Assets/MeshCombineWizard-master/License.txt.meta
+    - Assets/MeshCombineWizard-master/MeshCombineWizard.cs
+    - Assets/MeshCombineWizard-master/MeshCombineWizard.cs.meta
+    - Assets/MeshCombineWizard-master/README.md
+    - Assets/MeshCombineWizard-master/README.md.meta
+    - Assets/Meshes.meta
+    - Assets/Meshes/CombinedMeshes_Black_-6778.asset
+    - Assets/Meshes/CombinedMeshes_Black_-6778.asset.meta
+    - Assets/Meshes/CombinedMeshes_Gunmetal_-19244.asset
+    - Assets/Meshes/CombinedMeshes_Gunmetal_-19244.asset.meta
+    - Assets/Scenes/Prefabs/Bullet.prefab
+    - Assets/Scenes/Prefabs/Pistol.prefab
+    - Assets/Scenes/Prefabs/Pistol.prefab.meta
+    - Assets/Scenes/Prefabs/Weapons/Pistol.prefab
+    - Assets/Scenes/Prefabs/Weapons/Rifle.prefab
+    - Assets/Scenes/Prefabs/Weapons/Rifle.prefab.meta
+    - Assets/Scenes/SampleScene.unity
+    - Assets/Scenes/Scripts/Weapons.cs
+    - Assets/Scenes/Scripts/Weapons/WeaponsChildren/Pistol.cs
+    - Assets/Scenes/Scripts/Weapons/WeaponsChildren/Rifle.cs
+    - Assets/Scenes/Scripts/Weapons/WeaponsChildren/Rifle.cs.meta
+    - 
+    m_Values: 000000000000000000000000000000000000000000000000
+  RevisionSummary: 
+  ChangesSearchValue: 
+  SelectedHistoryRevision: 
+  HistoryPageNumber: 0
+  TabIndex: 0
