@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637850491648028507
-    m_Hash: 1031204057
+      ticks: 637851603845174088
+    m_Hash: 2858905098
   m_LockFileStatus:
     m_FilePath: Y:/Unity Game Dev/BoxShooter/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637850491672134227
-    m_Hash: 3275619520
+      ticks: 637851603845169079
+    m_Hash: 1015044133
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_PackageAssets:
@@ -179,12 +179,12 @@ m_PackageAssets:
         url: https://github.com/Unity-Technologies/com.unity.cinemachine.git
         revision: 0eef4802dbe9ea60fc58767471ce4c5ea86632de
         path: 
-    - packageId: com.unity.collab-proxy@1.15.13
+    - packageId: com.unity.collab-proxy@1.15.15
       testable: 0
       isDirectDependency: 1
-      version: 1.15.13
+      version: 1.15.15
       source: 1
-      resolvedPath: Y:\Unity Game Dev\BoxShooter\Library\PackageCache\com.unity.collab-proxy@1.15.13
+      resolvedPath: Y:\Unity Game Dev\BoxShooter\Library\PackageCache\com.unity.collab-proxy@1.15.15
       assetPath: Packages/com.unity.collab-proxy
       name: com.unity.collab-proxy
       displayName: Version Control
@@ -304,13 +304,13 @@ m_PackageAssets:
       entitlements:
         isAllowed: 1
       isAssetStorePackage: 0
-      datePublishedTicks: 637807003040000000
+      datePublishedTicks: 637828649420000000
       documentationUrl: 
       hasRepository: 1
       repository:
         type: git
         url: https://github.cds.internal.unity3d.com/unity/com.unity.cloud.collaborate.git
-        revision: 825774911ad2d1440ac844c9be1ae2c9b5dc7966
+        revision: abf10445fb869983dbe4f8f87ec63c58f4cd36e0
         path: 
     - packageId: com.unity.ide.rider@2.0.7
       testable: 0
@@ -1021,6 +1021,102 @@ m_PackageAssets:
         type: git
         url: https://github.cds.internal.unity3d.com/unity/com.unity.timeline.git
         revision: 527e4364e28028f20f04fc51db671eb4bb910a26
+        path: 
+    - packageId: com.unity.toolchain.win-x86_64-linux-x86_64@2.0.0
+      testable: 0
+      isDirectDependency: 1
+      version: 2.0.0
+      source: 1
+      resolvedPath: Y:\Unity Game Dev\BoxShooter\Library\PackageCache\com.unity.toolchain.win-x86_64-linux-x86_64@2.0.0
+      assetPath: Packages/com.unity.toolchain.win-x86_64-linux-x86_64
+      name: com.unity.toolchain.win-x86_64-linux-x86_64
+      displayName: Toolchain Win Linux x64
+      author:
+        name: 
+        email: 
+        url: 
+      category: 
+      type: 
+      description: Cross-compilation toolchain to build player target Linux x86_64
+        on host Windows x86_64
+      status: 4
+      errors: []
+      versions:
+        all:
+        - 0.1.4-preview
+        - 0.1.5-preview
+        - 0.1.6-preview
+        - 0.1.7-preview
+        - 0.1.8-preview
+        - 0.1.9-preview
+        - 0.1.10-preview
+        - 0.1.11-preview
+        - 0.1.13-preview
+        - 0.1.14-preview
+        - 0.1.15-preview
+        - 0.1.16-preview
+        - 0.1.17-preview
+        - 0.1.18-preview
+        - 0.1.19-preview
+        - 0.1.20-preview
+        - 0.1.21-preview
+        - 1.0.0
+        - 2.0.0
+        compatible:
+        - 0.1.4-preview
+        - 0.1.5-preview
+        - 0.1.6-preview
+        - 0.1.7-preview
+        - 0.1.8-preview
+        - 0.1.9-preview
+        - 0.1.10-preview
+        - 0.1.11-preview
+        - 0.1.13-preview
+        - 0.1.14-preview
+        - 0.1.15-preview
+        - 0.1.16-preview
+        - 0.1.17-preview
+        - 0.1.18-preview
+        - 0.1.19-preview
+        - 0.1.20-preview
+        - 0.1.21-preview
+        - 1.0.0
+        - 2.0.0
+        verified: 
+      dependencies:
+      - name: com.unity.sysroot
+        version: 2.0.0
+      - name: com.unity.sysroot.linux-x86_64
+        version: 2.0.0
+      resolvedDependencies:
+      - name: com.unity.sysroot
+        version: 2.0.0
+      - name: com.unity.sysroot.linux-x86_64
+        version: 2.0.0
+      keywords:
+      - toolchain
+      - windows
+      - linux
+      - cross-compilation
+      registry:
+        id: main
+        name: 
+        url: https://packages.unity.com
+        scopes: []
+        isDefault: 1
+        capabilities: 7
+      hasRegistry: 1
+      hideInEditor: 1
+      entitlements:
+        isAllowed: 1
+      isAssetStorePackage: 0
+      datePublishedTicks: 637847031850000000
+      documentationUrl: 
+      hasRepository: 1
+      repository:
+        type: git
+        url: https://github.com/Unity-Technologies/com.unity.sysroot.git
+        revision: e6c53e52ad77e8d1a6cfc2707e348f9e4799c595
         path: 
     - packageId: com.unity.ugui@1.0.0
       testable: 0
@@ -2826,6 +2922,159 @@ m_PackageAssets:
         type: 
         url: 
         revision: 
+        path: 
+    - packageId: com.unity.sysroot@2.0.0
+      testable: 0
+      isDirectDependency: 0
+      version: 2.0.0
+      source: 1
+      resolvedPath: Y:\Unity Game Dev\BoxShooter\Library\PackageCache\com.unity.sysroot@2.0.0
+      assetPath: Packages/com.unity.sysroot
+      name: com.unity.sysroot
+      displayName: Sysroot Base
+      author:
+        name: 
+        email: 
+        url: 
+      category: 
+      type: 
+      description: This is the base sysroot package required by all sysroot and toolchain
+        packages
+      status: 4
+      errors: []
+      versions:
+        all:
+        - 0.1.7-preview
+        - 0.1.8-preview
+        - 0.1.9-preview
+        - 0.1.10-preview
+        - 0.1.11-preview
+        - 0.1.12-preview
+        - 0.1.14-preview
+        - 0.1.15-preview
+        - 0.1.16-preview
+        - 0.1.17-preview
+        - 0.1.18-preview
+        - 0.1.19-preview
+        - 1.0.0
+        - 2.0.0
+        compatible:
+        - 0.1.7-preview
+        - 0.1.8-preview
+        - 0.1.9-preview
+        - 0.1.10-preview
+        - 0.1.11-preview
+        - 0.1.12-preview
+        - 0.1.14-preview
+        - 0.1.15-preview
+        - 0.1.16-preview
+        - 0.1.17-preview
+        - 0.1.18-preview
+        - 0.1.19-preview
+        - 1.0.0
+        - 2.0.0
+        verified: 
+      dependencies: []
+      resolvedDependencies: []
+      keywords:
+      - unity
+      - linux
+      - sysroot
+      registry:
+        id: main
+        name: 
+        url: https://packages.unity.com
+        scopes: []
+        isDefault: 1
+        capabilities: 7
+      hasRegistry: 1
+      hideInEditor: 1
+      entitlements:
+        isAllowed: 1
+      isAssetStorePackage: 0
+      datePublishedTicks: 637847030720000000
+      documentationUrl: 
+      hasRepository: 1
+      repository:
+        type: git
+        url: https://github.com/Unity-Technologies/com.unity.sysroot.git
+        revision: e6c53e52ad77e8d1a6cfc2707e348f9e4799c595
+        path: 
+    - packageId: com.unity.sysroot.linux-x86_64@2.0.0
+      testable: 0
+      isDirectDependency: 0
+      version: 2.0.0
+      source: 1
+      resolvedPath: Y:\Unity Game Dev\BoxShooter\Library\PackageCache\com.unity.sysroot.linux-x86_64@2.0.0
+      assetPath: Packages/com.unity.sysroot.linux-x86_64
+      name: com.unity.sysroot.linux-x86_64
+      displayName: Sysroot Linux x64
+      author:
+        name: 
+        email: 
+        url: 
+      category: 
+      type: 
+      description: Sysroot used to build unity player for linux x86_64
+      status: 4
+      errors: []
+      versions:
+        all:
+        - 0.1.6-preview
+        - 0.1.7-preview
+        - 0.1.8-preview
+        - 0.1.9-preview
+        - 0.1.10-preview
+        - 0.1.11-preview
+        - 0.1.12-preview
+        - 0.1.13-preview
+        - 0.1.14-preview
+        - 0.1.15-preview
+        - 1.0.0
+        - 2.0.0
+        compatible:
+        - 0.1.6-preview
+        - 0.1.7-preview
+        - 0.1.8-preview
+        - 0.1.9-preview
+        - 0.1.10-preview
+        - 0.1.11-preview
+        - 0.1.12-preview
+        - 0.1.13-preview
+        - 0.1.14-preview
+        - 0.1.15-preview
+        - 1.0.0
+        - 2.0.0
+        verified: 
+      dependencies:
+      - name: com.unity.sysroot
+        version: 2.0.0
+      resolvedDependencies:
+      - name: com.unity.sysroot
+        version: 2.0.0
+      keywords:
+      - unity
+      - linux
+      - sysroot
+      registry:
+        id: main
+        name: 
+        url: https://packages.unity.com
+        scopes: []
+        isDefault: 1
+        capabilities: 7
+      hasRegistry: 1
+      hideInEditor: 1
+      entitlements:
+        isAllowed: 1
+      isAssetStorePackage: 0
+      datePublishedTicks: 637847030880000000
+      documentationUrl: 
+      hasRepository: 1
+      repository:
+        type: git
+        url: https://github.com/Unity-Technologies/com.unity.sysroot.git
+        revision: e6c53e52ad77e8d1a6cfc2707e348f9e4799c595
         path: 
     - packageId: com.unity.ext.nunit@1.0.6
       testable: 0

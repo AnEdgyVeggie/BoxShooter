@@ -56,17 +56,19 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scenes\Scripts\Camera.cs" />
-    <Compile Include="Assets\Scenes\Scripts\Enemy\Enemy.cs" />
-    <Compile Include="Assets\Scenes\Scripts\Weapons\Weapons.cs" />
-    <Compile Include="Assets\Scenes\Scripts\Weapons\Bullet.cs" />
-    <Compile Include="Assets\Scenes\Scripts\PlayerScripts\Player.cs" />
-    <Compile Include="Assets\Scenes\Scripts\Managers\UIManager.cs" />
-    <Compile Include="Assets\Scenes\Scripts\Weapons\WeaponsChildren\Rifle.cs" />
-    <Compile Include="Assets\Scenes\Scripts\Weapons\WeaponsChildren\Pistol.cs" />
-    <Compile Include="Assets\Scenes\Scripts\PlayerScripts\Rotate.cs" />
-    <Compile Include="Assets\Scenes\Scripts\PlayerScripts\PlayerAnimation.cs" />
+    <Compile Include="Assets\Scripts\Camera.cs" />
     <Compile Include="Assets\MeshCombineWizard-master\MeshCombineWizard.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Enemy.cs" />
+    <Compile Include="Assets\Scripts\Weapons\Weapons.cs" />
+    <Compile Include="Assets\Scripts\Weapons\Bullet.cs" />
+    <Compile Include="Assets\Scripts\PlayerScripts\Player.cs" />
+    <Compile Include="Assets\Scripts\Managers\UIManager.cs" />
+    <Compile Include="Assets\Scripts\Weapons\WeaponsChildren\Rifle.cs" />
+    <Compile Include="Assets\Scripts\Weapons\WeaponsChildren\Pistol.cs" />
+    <Compile Include="Assets\Scripts\PlayerScripts\Rotate.cs" />
+    <Compile Include="Assets\Scripts\PlayerScripts\PlayerAnimation.cs" />
+    <Compile Include="Assets\Scripts\Enemy\EnemySpawnManager.cs" />
+    <Compile Include="Assets\Scripts\Managers\GameManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\MeshCombineWizard-master\License.txt" />
