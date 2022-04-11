@@ -4,14 +4,23 @@ using UnityEngine;
 
 public class Rotate : MonoBehaviour
 {
-    private float _mouseSensitivity = 1;
+    float _mouseSensitivity = 1;
+    bool _paused;
 
     void Update()
     {
-        float _mouseX = Input.GetAxis("Mouse X");
+        if (!_paused)
+        {
+            float _mouseX = Input.GetAxis("Mouse X");
 
-        Vector3 newRotation = transform.localEulerAngles;
-        newRotation.y += _mouseX * _mouseSensitivity;
-        transform.localEulerAngles = newRotation;
+            Vector3 newRotation = transform.localEulerAngles;
+            newRotation.y += _mouseX * _mouseSensitivity;
+            transform.localEulerAngles = newRotation;
+        }
+    }
+
+    public void SetPaused(bool pauseGame)
+    {
+        _paused = pauseGame;
     }
 }

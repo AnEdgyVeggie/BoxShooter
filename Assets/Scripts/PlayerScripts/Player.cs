@@ -26,6 +26,9 @@ public class Player : MonoBehaviour
     UIManager _uiManager;
     PlayerAnimation _playAnim;
 
+    // GAME MANAGER VARIABLES
+    bool _paused = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,37 +40,30 @@ public class Player : MonoBehaviour
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        MouseVisibility();
+        if (!_paused) {
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            FireWeapon();
+            if (Input.GetMouseButtonDown(0) && _currentClip > 0)
+            {
+                FireWeapon();
+            }
+
+
+            if (Input.GetAxisRaw("Scroll") > 0 || Input.GetAxisRaw("Scroll") < 0)
+            {
+                SwapWeaponInventory();
+            }
+
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                ReloadWeapon();
+            }
         }
 
-        if (Input.GetAxisRaw("Scroll") > 0 || Input.GetAxisRaw("Scroll") < 0)
-        {
-            SwapWeaponInventory();
-        }
-
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            ReloadWeapon();
-        }
-
-    }
-
-    void MouseVisibility()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        { Cursor.visible = true; }
-        else if (Input.GetMouseButtonDown(0))
-        { Cursor.visible = false; }
     }
 
 
@@ -86,12 +82,13 @@ public class Player : MonoBehaviour
                 _currentClip--;
                 _uiManager.UpdateAmmo(_currentClip, _fullClip);
 
-                if (_currentClip < 1)
+                if (_currentClip == 0)
                 {
                     _canfire = false;
+                    Debug.Log("Out of ammo");
                 }
             }
-            if ((_currentClip < _reserveAmmo && Input.GetKeyDown(KeyCode.R)) || _currentClip == 0 && Input.GetMouseButtonDown(0))
+            if ((_currentClip < _reserveAmmo && Input.GetKeyDown(KeyCode.R)) || _currentClip == 0 && Input.GetMouseButtonDown(0) && _reserveAmmo > 0)
             {
                 StartCoroutine(WeaponReloadRoutine());
             }
@@ -100,19 +97,31 @@ public class Player : MonoBehaviour
 
     void ReloadWeapon()
     {
-        if (!_isReloading && _reserveAmmo > 0)
+        if (!_isReloading)
         {
             _canfire = false;
             _isReloading = true;
             StartCoroutine(WeaponReloadRoutine());
         }
+        else
+        {
+            return;
+        }
     }
 
     IEnumerator WeaponReloadRoutine()
     {
+        int refillAmmo = _fullClip - _currentClip;
         yield return new WaitForSeconds(_reloadTime);
-        _reserveAmmo -= (_fullClip - _currentClip);
-        _currentClip = _fullClip;
+        if (_reserveAmmo >= refillAmmo) {
+            _reserveAmmo -= (_fullClip - _currentClip);
+            _currentClip = _fullClip;
+        } 
+        else
+        {
+            _currentClip = _reserveAmmo;
+            _reserveAmmo = 0;
+        }
         _isReloading = false;
         _canfire = true;
         _uiManager.UpdateAmmo(_currentClip, _fullClip);
@@ -129,7 +138,6 @@ public class Player : MonoBehaviour
         _weaponInventory[0] = swapped;
         WeaponStatsGetters();
         HideSecondWeapon();
-
     }
 
     public void SwapWeaponInventory()
@@ -158,10 +166,15 @@ public class Player : MonoBehaviour
         this._reserveAmmo = _weaponInventory[0].GetReserveAmmo();
         this._reloadTime = _weaponInventory[0].GetReloadTime();
         this._fullClip = _weaponInventory[0].GetFullClip();
+
+        _canfire = (_reserveAmmo > 0) ?  true : false;
+
         _uiManager.UpdateAmmo(_currentClip, _fullClip);
         _uiManager.UpdateReserveAmmo(_reserveAmmo);
+        _uiManager.UpdateWeaponType(_weaponInventory[0].name);
     }
     public float GetDamage() { return _damage; }
+
 
     private void HideSecondWeapon()
     {
@@ -173,5 +186,10 @@ public class Player : MonoBehaviour
         {
             _weaponInventory[0].gameObject.SetActive(true);
         }
+    }
+
+    public void SetPaused(bool pauseGame)
+    {
+        _paused = pauseGame;
     }
 }
