@@ -6,7 +6,7 @@ public class Weapons : MonoBehaviour
 {
     protected UIManager _uiManager;
 
-    // set publics to get/set
+    // set protecteds to get/set
     [SerializeField]
     protected int _fullClip = 50;     //ammo when active clip is full
     [SerializeField]
@@ -18,7 +18,8 @@ public class Weapons : MonoBehaviour
     [SerializeField]
     protected float _damage = 2;
 
-    protected BoxCollider boxCollider;
+
+    protected Player _player;
 
     void Start()
     {
@@ -26,22 +27,15 @@ public class Weapons : MonoBehaviour
         if (_uiManager == null)
         { Debug.LogError("UI manager is NULL in Weapons Script"); }
 
-        boxCollider = GetComponent<BoxCollider>();
+        _player = GameObject.Find("Player").GetComponent<Player>();
 
         Init();
     }
     public virtual void Init()
     {
-
+        // for inherited classes to set properties
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Player")
-        {
-
-        }
-    }
     private void OnTriggerStay(Collider other)
     {
         if (other.tag == "Player")
@@ -62,7 +56,6 @@ public class Weapons : MonoBehaviour
         {
             _uiManager.PickUpWeaponText(false);
             Debug.LogWarning("EXIT");
-
         }
     }
 
@@ -76,8 +69,13 @@ public class Weapons : MonoBehaviour
     {
         _uiManager.PickUpWeaponText(false);
     }
-    
 
+
+    public void SetAmmoProperties(int weaponClip, int weaponReserves)
+    {
+        _currentClip = weaponClip;
+        _reserveAmmo = weaponReserves;
+    }
 
     public float GetReloadTime() { return _reloadTime; }
     public float GetDamage() { return _damage; }

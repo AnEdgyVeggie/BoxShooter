@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
     protected GameObject[] _loot;
     protected Player _player;
     protected EnemySpawnManager _enSpawn;
+    protected bool _canDamage = true;
 
     public float Health { get; set; }
     public float Speed { get; set; }
@@ -38,11 +39,33 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        Health -= damage;
+        if (_canDamage)
+        {
+            Health -= damage;
+            _canDamage = false;
+            StartCoroutine(CanDamageRoutine());
+            Debug.LogWarning("DAMAGED");
+        }
         if (Health <= 0)
         {
             Destroy(this.gameObject);
             _enSpawn.DecrementEnemiesAlive();
         }    
+    }
+
+    IEnumerator CanDamageRoutine()
+    {
+        yield return new WaitForSeconds(0.05f);
+        _canDamage = true;
+    }
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.tag == "Bullet")
+        {
+            Bullet bullet = other.GetComponent<Bullet>();
+            bullet.SetSpeed(0);
+            TakeDamage(_player.GetDamage());
+            Destroy(bullet.gameObject);
+        }
     }
 }

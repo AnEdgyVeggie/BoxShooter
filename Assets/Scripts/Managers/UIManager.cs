@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     [SerializeField]
-    private Text _ammoCounter, _ammoCounterBack, _maxAmmoCounter, _maxAmmoCounterBack, pickupWeaponText;
+    Text _ammoCounter, _ammoCounterBack, _maxAmmoCounter, _maxAmmoCounterBack, _pickupWeaponText, _paused;
 
 
     // Start is called before the first frame update
@@ -23,7 +23,7 @@ public class UIManager : MonoBehaviour
 
     public void PickUpWeaponText(bool is_active)
     {
-        pickupWeaponText.gameObject.SetActive(is_active);
+        _pickupWeaponText.gameObject.SetActive(is_active);
     }
 
 
@@ -39,5 +39,9 @@ public void UpdateAmmo(int ammoRemaining, int maxAmmo)
     {
         _maxAmmoCounter.text = reserveAmmo.ToString();
         _maxAmmoCounterBack.text = reserveAmmo.ToString();
+    }
+    public void PausedGame(bool isActive)
+    {
+        _paused.gameObject.SetActive(isActive);
     }
 }

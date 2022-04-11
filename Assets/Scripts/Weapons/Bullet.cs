@@ -32,20 +32,16 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Enemy")
-        {
-            float damage = _player.GetDamage();
-            _enemy.TakeDamage(damage);
-            Debug.Log("Hit Before");
-            Destroy(this.gameObject);
-            _bulletSpeed = 0;
-            Debug.Log("Hit After");
-        }
 
         if (other.tag == "Enviroment")
         {
             Debug.LogWarning("BULLET HIT WALL");
             Destroy(this.gameObject);
         }
+    }
+
+    public void SetSpeed(float speed)
+    {
+        _bulletSpeed = speed;
     }
 }

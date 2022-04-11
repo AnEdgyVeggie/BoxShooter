@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
     bool _isReloading = false, _canfire = true, _weaponsActive = false;
 
 
-    // GameObject Scripts
+    // GAMEOBJECT VARIABLES
     Player _player;
     UIManager _uiManager;
     PlayerAnimation _playAnim;
@@ -45,16 +45,19 @@ public class Player : MonoBehaviour
     {
         MouseVisibility();
 
-
-
         if (Input.GetMouseButtonDown(0))
         {
             FireWeapon();
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetAxisRaw("Scroll") > 0 || Input.GetAxisRaw("Scroll") < 0)
         {
             SwapWeaponInventory();
+        }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            ReloadWeapon();
         }
 
     }
@@ -81,7 +84,7 @@ public class Player : MonoBehaviour
 
 
                 _currentClip--;
-                _uiManager.UpdateAmmo(_currentClip, _reserveAmmo);
+                _uiManager.UpdateAmmo(_currentClip, _fullClip);
 
                 if (_currentClip < 1)
                 {
@@ -95,10 +98,25 @@ public class Player : MonoBehaviour
         }
     }
 
+    void ReloadWeapon()
+    {
+        if (!_isReloading && _reserveAmmo > 0)
+        {
+            _canfire = false;
+            _isReloading = true;
+            StartCoroutine(WeaponReloadRoutine());
+        }
+    }
 
     IEnumerator WeaponReloadRoutine()
     {
-        yield return new WaitForSeconds(0);
+        yield return new WaitForSeconds(_reloadTime);
+        _reserveAmmo -= (_fullClip - _currentClip);
+        _currentClip = _fullClip;
+        _isReloading = false;
+        _canfire = true;
+        _uiManager.UpdateAmmo(_currentClip, _fullClip);
+        _uiManager.UpdateReserveAmmo(_reserveAmmo);
     }
 
     public void SwapWeaponWithNew(Weapons swapped)
@@ -116,6 +134,7 @@ public class Player : MonoBehaviour
 
     public void SwapWeaponInventory()
     {
+        _weaponInventory[0].SetAmmoProperties(_currentClip, _reserveAmmo);
         Weapons temp = _weaponInventory[1];
         _weaponInventory[1] = _weaponInventory[0];
         _weaponInventory[0] = temp;
@@ -139,6 +158,8 @@ public class Player : MonoBehaviour
         this._reserveAmmo = _weaponInventory[0].GetReserveAmmo();
         this._reloadTime = _weaponInventory[0].GetReloadTime();
         this._fullClip = _weaponInventory[0].GetFullClip();
+        _uiManager.UpdateAmmo(_currentClip, _fullClip);
+        _uiManager.UpdateReserveAmmo(_reserveAmmo);
     }
     public float GetDamage() { return _damage; }
 

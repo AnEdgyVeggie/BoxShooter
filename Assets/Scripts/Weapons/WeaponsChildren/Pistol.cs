@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Pistol : Weapons
 {
+    Animator anim;
 
     public override void Init()
     {
@@ -12,13 +13,12 @@ public class Pistol : Weapons
         _reserveAmmo = 90;
         _reloadTime = 1f;
         _damage = 10;
+
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
-    void Update()
-    {
 
-    }
 
     public override void EquipPlayer(Player player)
     {
@@ -26,6 +26,8 @@ public class Pistol : Weapons
         transform.localPosition = new Vector3(0.288f, 0.115f, 0.723f);
         transform.localRotation = Quaternion.identity;
         this.gameObject.layer = LayerMask.NameToLayer("EquippedWeapon");
+        anim.SetBool("InInventory", true);
     }
+
 
 }
