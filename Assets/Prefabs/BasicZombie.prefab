@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7578824363796193749}
   - component: {fileID: 7578824363796193750}
   - component: {fileID: 7578824363796193751}
-  - component: {fileID: 7578824363796193754}
+  - component: {fileID: 1521929964280778552}
   m_Layer: 0
   m_Name: BasicZombie
   m_TagString: Enemy
@@ -116,7 +116,7 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7578824363796193754
+--- !u!114 &1521929964280778552
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -125,6 +125,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 7578824363796193744}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fa85abc2cac138489e3ab7f7a377c6a, type: 3}
+  m_Script: {fileID: 11500000, guid: f5e62ada3d5720948ade027f49fc7db8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

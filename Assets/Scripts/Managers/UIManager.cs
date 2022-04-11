@@ -7,19 +7,14 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField]
     Text _ammoCounter, _ammoCounterBack, _maxAmmoCounter, _maxAmmoCounterBack, _pickupWeaponText, _paused,
-        _weaponType, _weaponTypeBack;
+        _weaponType, _weaponTypeBack, _scoreDisplay, _scoreDisplayBack;
 
 
     // Start is called before the first frame update
     void Start()
     {
         _weaponType.text = "Empty";
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        _scoreDisplay.text = "$0";
     }
 
     public void PickUpWeaponText(bool is_active)
@@ -49,4 +44,10 @@ public class UIManager : MonoBehaviour
     {
         _paused.gameObject.SetActive(isActive);
     }
+    public void DisplayScore(int score)
+    {
+        _scoreDisplay.text = "$" + score.ToString();
+        _scoreDisplayBack.text = "$" + score.ToString();
+    }
+
 }

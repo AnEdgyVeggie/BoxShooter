@@ -4,21 +4,13 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    protected float _health = 15;
-    protected float _speed = 3;
+    protected float _health = 15, _speed = 3;
+    protected int _pointsOnHit, _pointsOnDeath;
+
     protected GameObject[] _loot;
     protected Player _player;
     protected EnemySpawnManager _enSpawn;
     protected bool _canDamage = true;
-
-    public float Health { get; set; }
-    public float Speed { get; set; }
-
-    public Enemy()
-    {  
-        Health = _health;
-        Speed = _speed;
-    }
 
     // Start is called before the first frame update
     void Start()
@@ -28,34 +20,41 @@ public class Enemy : MonoBehaviour
             Debug.LogError("Player is null in Enemy Script");
 
         _enSpawn = GameObject.Find("EnemySpawnManager").GetComponent<EnemySpawnManager>();
+        Init();
+    }
+
+    public virtual void Init()
+    {
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position = Vector3.MoveTowards(transform.position, _player.transform.position, Speed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, _player.transform.position, _speed * Time.deltaTime);
     }
 
     public void TakeDamage(float damage)
     {
         if (_canDamage)
         {
-            Health -= damage;
+            _health -= damage;
+            _player.IncreaseScore(_pointsOnHit);
             _canDamage = false;
             StartCoroutine(CanDamageRoutine());
-            Debug.LogWarning("DAMAGED");
+
+            if (_health <= 0)
+            {
+                Destroy(this.gameObject);
+                _player.IncreaseScore(_pointsOnDeath);
+                _enSpawn.DecrementEnemiesAlive();
+            }
         }
-        if (Health <= 0)
-        {
-            Destroy(this.gameObject);
-            _enSpawn.DecrementEnemiesAlive();
-        }    
     }
 
     IEnumerator CanDamageRoutine()
     {
-        yield return new WaitForSeconds(0.05f);
+        yield return new WaitForSeconds(0.075f);
         _canDamage = true;
     }
     private void OnTriggerStay(Collider other)
@@ -65,6 +64,7 @@ public class Enemy : MonoBehaviour
             Bullet bullet = other.GetComponent<Bullet>();
             bullet.SetSpeed(0);
             TakeDamage(_player.GetDamage());
+
             Destroy(bullet.gameObject);
         }
     }

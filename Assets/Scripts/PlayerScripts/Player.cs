@@ -20,6 +20,10 @@ public class Player : MonoBehaviour
     [SerializeField]
     bool _isReloading = false, _canfire = true, _weaponsActive = false;
 
+    // SCORE AND OBJECTIVE VARIABLES
+    [SerializeField]
+    int _score = 0;
+
 
     // GAMEOBJECT VARIABLES
     Player _player;
@@ -192,4 +196,12 @@ public class Player : MonoBehaviour
     {
         _paused = pauseGame;
     }
+
+    public void IncreaseScore(int points)
+    { 
+        _score = _score +  points;
+        _uiManager.DisplayScore(_score);
+    }
+
+
 }

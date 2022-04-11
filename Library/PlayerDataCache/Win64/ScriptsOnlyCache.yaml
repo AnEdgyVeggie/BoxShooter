@@ -1,17 +1,21 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
+    - BasicZombie
     - Bullet
-    - Camera
-    - Enemy
     - EnemySpawnManager
     - GameManager
+    - Michsky.UI.Shift.QuickMatchButton
+    - Michsky.UI.Shift.UIElementSound
+    - Michsky.UI.Shift.UIManagerImage
     - Pistol
     - Player
     - PlayerAnimation
+    - PlayerCamera
     - Rifle
     - Rotate
     - UIManager
+    - WeaponPlatter
     Cinemachine.dll:
     - Cinemachine.CinemachineBrain
     - Cinemachine.CinemachineComposer
@@ -24,6 +28,11 @@ ScriptsOnlyBuild:
     - Unity.PlasticSCM.Editor.PlasticWindow
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
+    Unity.TextMeshPro.dll:
+    - TMPro.TMP_FontAsset
+    - TMPro.TMP_Settings
+    - TMPro.TMP_SpriteAsset
+    - TMPro.TMP_StyleSheet
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
@@ -35,9 +44,13 @@ ScriptsOnlyBuild:
     - UnityEditor.TestTools.TestRunner.TestListCacheData
     - UnityEditor.TestTools.TestRunner.TestRun.TestJobDataHolder
     UnityEngine.UI.dll:
+    - UnityEngine.UI.AspectRatioFitter
+    - UnityEngine.UI.Button
     - UnityEngine.UI.CanvasScaler
     - UnityEngine.UI.GraphicRaycaster
     - UnityEngine.UI.Image
+    - UnityEngine.UI.LayoutElement
+    - UnityEngine.UI.Mask
     - UnityEngine.UI.Text
   sceneClasses:
     Assets/Scenes/SampleScene.unity:
@@ -59,6 +72,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 48
       Script: {instanceID: 0}
+    - Class: 49
+      Script: {instanceID: 0}
     - Class: 54
       Script: {instanceID: 0}
     - Class: 65
@@ -78,45 +93,63 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1482}
+      Script: {instanceID: 1464}
     - Class: 114
-      Script: {instanceID: 1520}
+      Script: {instanceID: 1466}
     - Class: 114
-      Script: {instanceID: 2064}
+      Script: {instanceID: 1556}
     - Class: 114
-      Script: {instanceID: 2348}
+      Script: {instanceID: 1646}
     - Class: 114
-      Script: {instanceID: 2382}
+      Script: {instanceID: 1786}
     - Class: 114
-      Script: {instanceID: 2416}
+      Script: {instanceID: 2090}
     - Class: 114
-      Script: {instanceID: 2452}
+      Script: {instanceID: 2100}
     - Class: 114
-      Script: {instanceID: 2586}
+      Script: {instanceID: 2392}
     - Class: 114
-      Script: {instanceID: 2638}
+      Script: {instanceID: 2426}
+    - Class: 114
+      Script: {instanceID: 2498}
+    - Class: 114
+      Script: {instanceID: 2628}
+    - Class: 114
+      Script: {instanceID: 2684}
     - Class: 114
       Script: {instanceID: 2700}
     - Class: 114
-      Script: {instanceID: 2816}
+      Script: {instanceID: 2750}
     - Class: 114
-      Script: {instanceID: 2830}
+      Script: {instanceID: 2872}
     - Class: 114
-      Script: {instanceID: 3024}
+      Script: {instanceID: 2890}
     - Class: 114
-      Script: {instanceID: 3304}
+      Script: {instanceID: 3084}
     - Class: 114
-      Script: {instanceID: 3406}
+      Script: {instanceID: 3376}
     - Class: 114
-      Script: {instanceID: 3528}
+      Script: {instanceID: 3480}
     - Class: 114
-      Script: {instanceID: 3774}
+      Script: {instanceID: 3602}
     - Class: 114
-      Script: {instanceID: 4342}
+      Script: {instanceID: 3858}
     - Class: 114
-      Script: {instanceID: 4598}
+      Script: {instanceID: 3862}
     - Class: 114
-      Script: {instanceID: 4676}
+      Script: {instanceID: 4132}
+    - Class: 114
+      Script: {instanceID: 4430}
+    - Class: 114
+      Script: {instanceID: 4450}
+    - Class: 114
+      Script: {instanceID: 4674}
+    - Class: 114
+      Script: {instanceID: 4716}
+    - Class: 114
+      Script: {instanceID: 4798}
+    - Class: 114
+      Script: {instanceID: 20632}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -129,13 +162,47 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 196
       Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
     - Class: 222
       Script: {instanceID: 0}
     - Class: 223
       Script: {instanceID: 0}
     - Class: 224
       Script: {instanceID: 0}
+    - Class: 225
+      Script: {instanceID: 0}
   scriptHashData:
+  - hash:
+      serializedVersion: 2
+      Hash: cf9f5cf2c3145a37ac07f00e50e460f9
+    assemblyName: UnityEngine.UI.dll
+    namespaceName: UnityEngine.UI
+    className: AspectRatioFitter
+  - hash:
+      serializedVersion: 2
+      Hash: a6e561615949734e9f12f9b61661f43e
+    assemblyName: UnityEngine.UI.dll
+    namespaceName: UnityEngine.UI
+    className: Image
+  - hash:
+      serializedVersion: 2
+      Hash: 748dd2a2a28da4e618912da5ac45684b
+    assemblyName: UnityEngine.UI.dll
+    namespaceName: UnityEngine.EventSystems
+    className: StandaloneInputModule
+  - hash:
+      serializedVersion: 2
+      Hash: cc4274b586df3c02688bac01b88bd16c
+    assemblyName: UnityEngine.UI.dll
+    namespaceName: UnityEngine.EventSystems
+    className: EventSystem
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Michsky.UI.Shift
+    className: ShiftUIEditorHandler
   - hash:
       serializedVersion: 2
       Hash: 5ab533713adae59372fb3e10a585c186
@@ -144,10 +211,10 @@ ScriptsOnlyBuild:
     className: AnimationPlayableAsset
   - hash:
       serializedVersion: 2
-      Hash: a6e561615949734e9f12f9b61661f43e
-    assemblyName: UnityEngine.UI.dll
-    namespaceName: UnityEngine.UI
-    className: Image
+      Hash: 33f8c00a20d2827d3dc9b58f23b62a1d
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Michsky.UI.Shift
+    className: HorizontalSelector
   - hash:
       serializedVersion: 2
       Hash: 694d20920c0e41f567e119f7159a3644
@@ -171,7 +238,7 @@ ScriptsOnlyBuild:
       Hash: fdc3fafc396fa646196b29eccba863ac
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: Camera
+    className: PlayerCamera
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -240,6 +307,12 @@ ScriptsOnlyBuild:
     className: TMP_FontAsset
   - hash:
       serializedVersion: 2
+      Hash: 857a60af832d89480607c0521ec09597
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Michsky.UI.Shift
+    className: QuickMatchButton
+  - hash:
+      serializedVersion: 2
       Hash: cbae2ed2d2d53cc8f539e7cb4f29bc1f
     assemblyName: Cinemachine.dll
     namespaceName: 
@@ -295,6 +368,18 @@ ScriptsOnlyBuild:
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Michsky.UI.Shift
+    className: ExitToSystem
+  - hash:
+      serializedVersion: 2
+      Hash: fbb0729ba10291f2e3381191fa93f2e3
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Michsky.UI.Shift
+    className: UIManagerParticle
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Cinemachine.dll
     namespaceName: Cinemachine.PostFX
     className: CinemachinePostProcessing
@@ -304,6 +389,12 @@ ScriptsOnlyBuild:
     assemblyName: Cinemachine.dll
     namespaceName: Cinemachine
     className: CinemachineOrbitalTransposer
+  - hash:
+      serializedVersion: 2
+      Hash: 82af3f0f61fb52a7cd1e1633d43112bf
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Michsky.UI.Shift
+    className: SettingsButton
   - hash:
       serializedVersion: 2
       Hash: 62824bb9557c7e987502f2fbd2a26819
@@ -330,6 +421,12 @@ ScriptsOnlyBuild:
     className: CinemachineSameAsFollowTarget
   - hash:
       serializedVersion: 2
+      Hash: e9aa98532110a67ddd96c62367c28df3
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Michsky.UI.Shift
+    className: UIManagerText
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
@@ -346,18 +443,6 @@ ScriptsOnlyBuild:
     assemblyName: Cinemachine.dll
     namespaceName: Cinemachine
     className: CinemachineClearShot
-  - hash:
-      serializedVersion: 2
-      Hash: cf9f5cf2c3145a37ac07f00e50e460f9
-    assemblyName: UnityEngine.UI.dll
-    namespaceName: UnityEngine.UI
-    className: AspectRatioFitter
-  - hash:
-      serializedVersion: 2
-      Hash: cc4274b586df3c02688bac01b88bd16c
-    assemblyName: UnityEngine.UI.dll
-    namespaceName: UnityEngine.EventSystems
-    className: EventSystem
   - hash:
       serializedVersion: 2
       Hash: fe64a45214940b510a0ec79c96d43498
@@ -390,6 +475,12 @@ ScriptsOnlyBuild:
     className: CinemachinePipeline
   - hash:
       serializedVersion: 2
+      Hash: 339488b3357bfa1abcb5f788c02fe10f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Michsky.UI.Shift
+    className: UIManager
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Cinemachine.dll
     namespaceName: Cinemachine
@@ -402,10 +493,22 @@ ScriptsOnlyBuild:
     className: GameManager
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: WeaponPlatter
+  - hash:
+      serializedVersion: 2
       Hash: 794197058eb37b1a279ca5c2760ad40c
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Weapons
+  - hash:
+      serializedVersion: 2
+      Hash: 74337169c093582f975c47656bb91e62
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Michsky.UI.Shift
+    className: UIManagerGameLogo
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -418,6 +521,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: GraphicRaycaster
+  - hash:
+      serializedVersion: 2
+      Hash: 7a592576d6aa24cc8ab7500964c96f91
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Michsky.UI.Shift
+    className: TimedEvent
   - hash:
       serializedVersion: 2
       Hash: f40fedccd4adbc76605bea6d67537e4b
@@ -436,6 +545,18 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_SpriteAnimator
+  - hash:
+      serializedVersion: 2
+      Hash: 65fe382ade994b1f19e12067a57c33c5
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Michsky.UI.Shift
+    className: VirtualCursorAnimate
+  - hash:
+      serializedVersion: 2
+      Hash: 80bf0abbb5e8c6b5557a9a68cf317455
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Michsky.UI.Shift
+    className: MainPanelButton
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -462,6 +583,18 @@ ScriptsOnlyBuild:
     className: EnemySpawnManager
   - hash:
       serializedVersion: 2
+      Hash: 4a81177d1678f8655ff7a60fcc090d9f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Michsky.UI.Shift
+    className: SplashScreenManager
+  - hash:
+      serializedVersion: 2
+      Hash: 31cc880577f73def8b7c8f1351fdd6aa
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Michsky.UI.Shift
+    className: ChapterButton
+  - hash:
+      serializedVersion: 2
       Hash: 3fd1a3d18acd8fa1edcd340544bd55cf
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
@@ -472,12 +605,6 @@ ScriptsOnlyBuild:
     assemblyName: Cinemachine.dll
     namespaceName: Cinemachine
     className: Cinemachine3rdPersonFollow
-  - hash:
-      serializedVersion: 2
-      Hash: 748dd2a2a28da4e618912da5ac45684b
-    assemblyName: UnityEngine.UI.dll
-    namespaceName: UnityEngine.EventSystems
-    className: StandaloneInputModule
   - hash:
       serializedVersion: 2
       Hash: f7858108331b563fb41b80b729297acd
@@ -534,7 +661,13 @@ ScriptsOnlyBuild:
     className: Button
   - hash:
       serializedVersion: 2
-      Hash: 53770fb7dc5833479fa6f934d6d07b99
+      Hash: f21cccbcfd1b94cbf6f565e0868a8ce5
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Michsky.UI.Shift
+    className: MainPanelManager
+  - hash:
+      serializedVersion: 2
+      Hash: bb5cab16c41242b68f0c88f6fb22841f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Player
@@ -546,16 +679,34 @@ ScriptsOnlyBuild:
     className: TextContainer
   - hash:
       serializedVersion: 2
+      Hash: 10f6d5b00edadc600960816608e60524
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Michsky.UI.Shift
+    className: ShortcutButton
+  - hash:
+      serializedVersion: 2
       Hash: 8aa3d6ccbcb54ee8db6c1229854adaaa
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: ContentSizeFitter
   - hash:
       serializedVersion: 2
+      Hash: 79065c424a2aaa8fbfd62ae6eba80ae7
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Michsky.UI.Shift
+    className: ModalWindowManager
+  - hash:
+      serializedVersion: 2
       Hash: 6ff1c52123c50b3d73f35cd0e2e65dfd
     assemblyName: Cinemachine.dll
     namespaceName: Cinemachine
     className: CinemachineSmoothPath
+  - hash:
+      serializedVersion: 2
+      Hash: 3b47e85014c5e084d680b285d8779d7d
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Michsky.UI.Shift
+    className: CustomInputField
   - hash:
       serializedVersion: 2
       Hash: caa533b001ae39b864ba8425019e2268
@@ -576,10 +727,22 @@ ScriptsOnlyBuild:
     className: PlayableTrack
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Michsky.UI.Shift
+    className: UIElementInFront
+  - hash:
+      serializedVersion: 2
       Hash: 3164bc883ff663a5cdb32d1ef7e7c0c5
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: VerticalLayoutGroup
+  - hash:
+      serializedVersion: 2
+      Hash: 94214f8bdb960ecd532fecbebf1f9f34
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Michsky.UI.Shift
+    className: HoldKeyEvent
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -588,10 +751,16 @@ ScriptsOnlyBuild:
     className: PlayerQuitHandler
   - hash:
       serializedVersion: 2
-      Hash: 6bffc90b5406a0dc4ec61d55a47a3e72
+      Hash: 03220932ad9c283bff2e29c7b0d3e597
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: UIManager
+  - hash:
+      serializedVersion: 2
+      Hash: a49b4cae811466b0156e9be25c13dcc4
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Michsky.UI.Shift
+    className: VirtualCursor
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -684,6 +853,18 @@ ScriptsOnlyBuild:
     className: CinemachineShot
   - hash:
       serializedVersion: 2
+      Hash: e87e4a4b53652e3121c1de39d982a768
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Michsky.UI.Shift
+    className: LaunchURL
+  - hash:
+      serializedVersion: 2
+      Hash: 74a0ea18f96e956df4cec7122f512ccf
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Michsky.UI.Shift
+    className: UIManagerBGMusic
+  - hash:
+      serializedVersion: 2
       Hash: a81d4c2c1cf3ad164d277d927a193679
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -702,6 +883,18 @@ ScriptsOnlyBuild:
     className: CinemachineIndependentImpulseListener
   - hash:
       serializedVersion: 2
+      Hash: 0316e2e428685ba724c0d6ec0bd19cef
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Michsky.UI.Shift
+    className: SwitchManager
+  - hash:
+      serializedVersion: 2
+      Hash: 6cd031e68b9fbf19078dbcf8be72aecf
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Michsky.UI.Shift
+    className: SpotlightButton
+  - hash:
+      serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
@@ -712,6 +905,12 @@ ScriptsOnlyBuild:
     assemblyName: Cinemachine.dll
     namespaceName: Cinemachine
     className: CinemachineTrackedDolly
+  - hash:
+      serializedVersion: 2
+      Hash: acb6d277d4b0139377ae19037ca03bd3
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Michsky.UI.Shift
+    className: PointerEnterEvents
   - hash:
       serializedVersion: 2
       Hash: 794197058eb37b1a279ca5c2760ad40c
@@ -726,10 +925,34 @@ ScriptsOnlyBuild:
     className: Mask
   - hash:
       serializedVersion: 2
+      Hash: d553164758ab4a4b427141455c39c20c
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Michsky.UI.Shift
+    className: EditorDemoPositionFix
+  - hash:
+      serializedVersion: 2
+      Hash: b62d0640c0882ad98f0d79793457e4d6
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Michsky.UI.Shift
+    className: PressKeyEvent
+  - hash:
+      serializedVersion: 2
       Hash: e6d75f1a9bc0c6f7085df0baa077e688
     assemblyName: Cinemachine.dll
     namespaceName: Cinemachine
     className: CinemachineGroupComposer
+  - hash:
+      serializedVersion: 2
+      Hash: b64a2481369d11307809205b45b2995c
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Michsky.UI.Shift
+    className: CanvasManager
+  - hash:
+      serializedVersion: 2
+      Hash: a4d6f364fa19d7a393ee9fc3e1f47088
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Michsky.UI.Shift
+    className: LayoutGroupPositionFix
   - hash:
       serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
@@ -756,6 +979,18 @@ ScriptsOnlyBuild:
     className: ScrollRect
   - hash:
       serializedVersion: 2
+      Hash: b35ec5615be80fd0df0e96b59306c219
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Michsky.UI.Shift
+    className: UIParticleRenderer
+  - hash:
+      serializedVersion: 2
+      Hash: 924261c7be06c06d80f84b8957074fee
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Michsky.UI.Shift
+    className: UIManagerBackground
+  - hash:
+      serializedVersion: 2
       Hash: 18c222bef9ae745ce69ddde9b74337ca
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.EventSystems
@@ -780,10 +1015,22 @@ ScriptsOnlyBuild:
     className: CinemachineStoryboard
   - hash:
       serializedVersion: 2
+      Hash: b9b03beb7a2f49cf8ade5ddfd6d5a83c
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Michsky.UI.Shift
+    className: GradientEffect
+  - hash:
+      serializedVersion: 2
       Hash: ffd3ed4fcd23b3e7745287c99a637247
     assemblyName: Cinemachine.dll
     namespaceName: Cinemachine
     className: Cinemachine3rdPersonAim
+  - hash:
+      serializedVersion: 2
+      Hash: 4bb3a60fe9c19e4024e4e3aeed24d99e
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Michsky.UI.Shift
+    className: GamepadChecker
   - hash:
       serializedVersion: 2
       Hash: ef5c43f921427d03730f6ea4c848f07d
@@ -804,6 +1051,18 @@ ScriptsOnlyBuild:
     className: TMP_Settings
   - hash:
       serializedVersion: 2
+      Hash: 0ad838149b8d3e3bad017407da7e5d99
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Michsky.UI.Shift
+    className: FavoriteButton
+  - hash:
+      serializedVersion: 2
+      Hash: b2c1468659f5300940c6c130614e5ecc
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Michsky.UI.Shift
+    className: ScrollGamepadManager
+  - hash:
+      serializedVersion: 2
       Hash: dbfb4270852b0008a423a7418d9de4cf
     assemblyName: Cinemachine.dll
     namespaceName: Cinemachine
@@ -814,6 +1073,12 @@ ScriptsOnlyBuild:
     assemblyName: Cinemachine.dll
     namespaceName: Cinemachine
     className: GroupWeightManipulator
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Michsky.UI.Shift
+    className: FriendsPanelManager
   - hash:
       serializedVersion: 2
       Hash: 56df1fa7cea034df9863fe5a24200a32
@@ -870,16 +1135,46 @@ ScriptsOnlyBuild:
     className: CinemachineBasicMultiChannelPerlin
   - hash:
       serializedVersion: 2
+      Hash: 05b07fe6f15637b73b9ccfea069d48e6
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Michsky.UI.Shift
+    className: UIManagerImage
+  - hash:
+      serializedVersion: 2
+      Hash: 6d76eef84c89bf639b6e56ee7718020f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Michsky.UI.Shift
+    className: BlurManager
+  - hash:
+      serializedVersion: 2
+      Hash: 411adb87d2008240a1587c2dadf19291
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Michsky.UI.Shift
+    className: ScrollForMore
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerAnimation
   - hash:
       serializedVersion: 2
+      Hash: b92e47237f4bebefb2ca5ef619f8d4c2
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Michsky.UI.Shift
+    className: QualityManager
+  - hash:
+      serializedVersion: 2
       Hash: 8220b46879dc5e37db1b940c938f5744
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: SignalEmitter
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Michsky.UI.Shift
+    className: MainPanelButtonParent
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -892,6 +1187,12 @@ ScriptsOnlyBuild:
     assemblyName: Cinemachine.dll
     namespaceName: Cinemachine
     className: CinemachineComposer
+  - hash:
+      serializedVersion: 2
+      Hash: 6e918575386f33b83f9867f59a245120
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Michsky.UI.Shift
+    className: SliderGamepadManager
   - hash:
       serializedVersion: 2
       Hash: 7ab0e790220bdca831fdd886b339039d
@@ -916,6 +1217,36 @@ ScriptsOnlyBuild:
     assemblyName: Cinemachine.dll
     namespaceName: Cinemachine
     className: CinemachineBlendListCamera
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Michsky.UI.Shift
+    className: ServerBrowserManager
+  - hash:
+      serializedVersion: 2
+      Hash: 0542caf5c6f4ff45f191e948f8c08d4e
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Michsky.UI.Shift
+    className: SliderManager
+  - hash:
+      serializedVersion: 2
+      Hash: 6bac45eb8a5c998770434a82285a9642
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Michsky.UI.Shift
+    className: UIElementSound
+  - hash:
+      serializedVersion: 2
+      Hash: c11eb683fbbc1f959f77cf1be4ba31b0
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Michsky.UI.Shift
+    className: MainButton
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: BasicZombie
   platform: 19
   scenePathNames:
   - Assets/Scenes/SampleScene.unity
