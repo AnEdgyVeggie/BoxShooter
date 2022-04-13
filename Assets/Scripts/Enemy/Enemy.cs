@@ -34,6 +34,10 @@ public class Enemy : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, _player.transform.position, _speed * Time.deltaTime);
     }
 
+    private void FixedUpdate()
+    {
+  
+    }
     public void TakeDamage(float damage)
     {
         if (_canDamage)

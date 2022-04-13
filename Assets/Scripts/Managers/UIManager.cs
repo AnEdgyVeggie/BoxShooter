@@ -7,7 +7,7 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField]
     Text _ammoCounter, _ammoCounterBack, _maxAmmoCounter, _maxAmmoCounterBack, _pickupWeaponText, _paused,
-        _weaponType, _weaponTypeBack, _scoreDisplay, _scoreDisplayBack;
+        _weaponType, _weaponTypeBack, _scoreDisplay, _scoreDisplayBack, _round, _roundBack;
 
 
     // Start is called before the first frame update
@@ -49,5 +49,9 @@ public class UIManager : MonoBehaviour
         _scoreDisplay.text = "$" + score.ToString();
         _scoreDisplayBack.text = "$" + score.ToString();
     }
-
+    public void DisplayRound(int round)
+    {
+        _round.text = "Round " + round.ToString();
+        _roundBack.text = "Round " + round.ToString();
+    }
 }

@@ -29,6 +29,7 @@ public class Player : MonoBehaviour
     Player _player;
     UIManager _uiManager;
     PlayerAnimation _playAnim;
+    AudioSource _audio;
 
     // GAME MANAGER VARIABLES
     bool _paused = false;
@@ -41,6 +42,8 @@ public class Player : MonoBehaviour
         _uiManager = GameObject.Find("UIManager").GetComponent<UIManager>();
 
         _playAnim = GetComponent<PlayerAnimation>();
+
+        _audio = this.GetComponent<AudioSource>();
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
@@ -81,7 +84,7 @@ public class Player : MonoBehaviour
             if (Input.GetMouseButtonDown(0) && _isReloading == false && _canfire == true)
             {
                 Instantiate(_bulletPrefab, new Vector3(weaponPosition.x, weaponPosition.y, weaponPosition.z), Quaternion.Euler(0, playerRotation.y + 90, 90));
-
+                _audio.Play();
 
                 _currentClip--;
                 _uiManager.UpdateAmmo(_currentClip, _fullClip);

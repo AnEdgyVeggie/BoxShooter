@@ -8,15 +8,12 @@ public class PlayerCamera : MonoBehaviour
     float _playerSpeed = 5;
 
     Vector3 velocity;
-    CharacterController _charControl;
     Rigidbody _rigidBody;
 
     // Start is called before the first frame update
     void Start()
     {
-        _charControl = GetComponent<CharacterController>();
-        if (_charControl == null)
-        { Debug.LogError("Character Controller is NULL"); }
+
 
         _rigidBody = GetComponent<Rigidbody>();
         if (_rigidBody == null) { Debug.LogWarning("RIGIDBODY is NULL in CAMERA script");  }

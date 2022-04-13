@@ -5,9 +5,12 @@ ScriptsOnlyBuild:
     - Bullet
     - EnemySpawnManager
     - GameManager
+    - Michsky.UI.Shift.LayoutGroupPositionFix
+    - Michsky.UI.Shift.MainPanelButton
     - Michsky.UI.Shift.QuickMatchButton
     - Michsky.UI.Shift.UIElementSound
     - Michsky.UI.Shift.UIManagerImage
+    - Michsky.UI.Shift.UIManagerText
     - Pistol
     - Player
     - PlayerAnimation
@@ -33,11 +36,14 @@ ScriptsOnlyBuild:
     - TMPro.TMP_Settings
     - TMPro.TMP_SpriteAsset
     - TMPro.TMP_StyleSheet
+    - TMPro.TextMeshProUGUI
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -47,7 +53,9 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.AspectRatioFitter
     - UnityEngine.UI.Button
     - UnityEngine.UI.CanvasScaler
+    - UnityEngine.UI.ContentSizeFitter
     - UnityEngine.UI.GraphicRaycaster
+    - UnityEngine.UI.HorizontalLayoutGroup
     - UnityEngine.UI.Image
     - UnityEngine.UI.LayoutElement
     - UnityEngine.UI.Mask
@@ -82,6 +90,10 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
+      Script: {instanceID: 0}
     - Class: 89
       Script: {instanceID: 0}
     - Class: 91
@@ -99,64 +111,78 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1556}
     - Class: 114
-      Script: {instanceID: 1646}
+      Script: {instanceID: 1626}
     - Class: 114
-      Script: {instanceID: 1786}
+      Script: {instanceID: 1648}
     - Class: 114
-      Script: {instanceID: 2090}
+      Script: {instanceID: 1712}
     - Class: 114
-      Script: {instanceID: 2100}
+      Script: {instanceID: 1788}
     - Class: 114
-      Script: {instanceID: 2392}
+      Script: {instanceID: 2092}
     - Class: 114
-      Script: {instanceID: 2426}
+      Script: {instanceID: 2102}
     - Class: 114
-      Script: {instanceID: 2498}
+      Script: {instanceID: 2394}
     - Class: 114
-      Script: {instanceID: 2628}
+      Script: {instanceID: 2428}
     - Class: 114
-      Script: {instanceID: 2684}
+      Script: {instanceID: 2446}
     - Class: 114
-      Script: {instanceID: 2700}
+      Script: {instanceID: 2500}
     - Class: 114
-      Script: {instanceID: 2750}
+      Script: {instanceID: 2608}
     - Class: 114
-      Script: {instanceID: 2872}
+      Script: {instanceID: 2630}
     - Class: 114
-      Script: {instanceID: 2890}
+      Script: {instanceID: 2686}
     - Class: 114
-      Script: {instanceID: 3084}
+      Script: {instanceID: 2702}
     - Class: 114
-      Script: {instanceID: 3376}
+      Script: {instanceID: 2752}
     - Class: 114
-      Script: {instanceID: 3480}
+      Script: {instanceID: 2834}
     - Class: 114
-      Script: {instanceID: 3602}
+      Script: {instanceID: 2874}
     - Class: 114
-      Script: {instanceID: 3858}
+      Script: {instanceID: 2892}
     - Class: 114
-      Script: {instanceID: 3862}
+      Script: {instanceID: 3058}
     - Class: 114
-      Script: {instanceID: 4132}
+      Script: {instanceID: 3086}
     - Class: 114
-      Script: {instanceID: 4430}
+      Script: {instanceID: 3232}
     - Class: 114
-      Script: {instanceID: 4450}
+      Script: {instanceID: 3378}
     - Class: 114
-      Script: {instanceID: 4674}
+      Script: {instanceID: 3482}
     - Class: 114
-      Script: {instanceID: 4716}
+      Script: {instanceID: 3604}
     - Class: 114
-      Script: {instanceID: 4798}
+      Script: {instanceID: 3860}
     - Class: 114
-      Script: {instanceID: 20632}
+      Script: {instanceID: 3864}
+    - Class: 114
+      Script: {instanceID: 3966}
+    - Class: 114
+      Script: {instanceID: 4134}
+    - Class: 114
+      Script: {instanceID: 4432}
+    - Class: 114
+      Script: {instanceID: 4452}
+    - Class: 114
+      Script: {instanceID: 4676}
+    - Class: 114
+      Script: {instanceID: 4718}
+    - Class: 114
+      Script: {instanceID: 4800}
+    - Class: 114
+      Script: {instanceID: 4920}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
       Script: {instanceID: 0}
     - Class: 136
-      Script: {instanceID: 0}
-    - Class: 143
       Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
@@ -245,6 +271,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: SignalAsset
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: BasicZombie
   - hash:
       serializedVersion: 2
       Hash: bcaee4c2a83047257b5f47d6ed264b75
@@ -577,7 +609,7 @@ ScriptsOnlyBuild:
     className: CinemachineTrack
   - hash:
       serializedVersion: 2
-      Hash: 9fb8f07351de64a7e08db46dd87640a6
+      Hash: 58990396cee04b1e85f8bd8805ea1263
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: EnemySpawnManager
@@ -751,7 +783,7 @@ ScriptsOnlyBuild:
     className: PlayerQuitHandler
   - hash:
       serializedVersion: 2
-      Hash: 03220932ad9c283bff2e29c7b0d3e597
+      Hash: 076669a2b2a9bbf1c87b087f7eb9e991
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: UIManager
@@ -1241,12 +1273,6 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: Michsky.UI.Shift
     className: MainButton
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: BasicZombie
   platform: 19
   scenePathNames:
   - Assets/Scenes/SampleScene.unity
