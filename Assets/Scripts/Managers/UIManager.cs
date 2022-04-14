@@ -15,7 +15,6 @@ public class UIManager : MonoBehaviour
     bool _inMenu = false;
 
 
-
     // Start is called before the first frame update
     void Start()
     {
@@ -26,7 +25,6 @@ public class UIManager : MonoBehaviour
     {
         _pickupWeaponText.gameObject.SetActive(is_active);
     }
-
 
     public void UpdateAmmo(int ammoRemaining, int maxAmmo)
     {

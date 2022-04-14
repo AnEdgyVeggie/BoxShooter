@@ -6,8 +6,11 @@ public class Player : MonoBehaviour
 {
     // WEAPON AND AMMUNITION VARIABLES
     [Header("Weapon Stats")]
+    [SerializeField]
     int _currentClip, _reserveAmmo, _fullClip;
+    [SerializeField]
     float _reloadTime, _damage, _travelTime;
+    [SerializeField]
     bool _isReloading = false, _canfire = true, _weaponsActive = false;
 
     // SCORE AND OBJECTIVE VARIABLES
@@ -44,6 +47,8 @@ public class Player : MonoBehaviour
 
         _audio = this.GetComponent<AudioSource>();
         HideCursor();
+
+        WeaponStatsGetters();
 
     }
 
@@ -134,7 +139,6 @@ public class Player : MonoBehaviour
 
     public void SwapWeaponWithNew(Weapons swapped)
     {
-
         if (_weaponInventory[0].name == "Unarmed")
         {
             _weaponInventory[0] = swapped;
@@ -144,7 +148,6 @@ public class Player : MonoBehaviour
             _weaponInventory[1] = _weaponInventory[0];
             _weaponInventory[0] = swapped;
         }
-
         WeaponStatsGetters();
         HideSecondWeapon();
     }
@@ -210,6 +213,18 @@ public class Player : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
 
+
+    public bool CheckWeaponsInInventory(Weapons swappable)
+    {
+        foreach (Weapons weap in _weaponInventory)
+        {
+            if (weap.GetType() == swappable.GetType())
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 
     // Getters
     private void WeaponStatsGetters()

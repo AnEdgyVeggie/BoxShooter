@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Weapons : MonoBehaviour
 {
+    [SerializeField]
     protected UIManager _uiManager;
 
     // set protecteds to get/set
@@ -17,17 +18,19 @@ public class Weapons : MonoBehaviour
     protected float _reloadTime = 1.5f, _travelTime = 2.5f;
     [SerializeField]
     protected float _damage = 2;
+    [SerializeField]
+    protected bool _onGround = false, _onPlayer = false;
 
 
+    [SerializeField]
+    protected GameObject _weaponplatter;
     protected Player _player;
 
     void Start()
     {
-        _uiManager = GameObject.Find("UIManager").GetComponent<UIManager>();
-        if (_uiManager == null)
-        { Debug.LogError("UI manager is NULL in Weapons Script"); }
-
         _player = GameObject.Find("Player").GetComponent<Player>();
+
+        _uiManager = GameObject.Find("UIManager").GetComponent<UIManager>();
 
         Init();
     }
@@ -36,12 +39,13 @@ public class Weapons : MonoBehaviour
         // for inherited classes to set properties
     }
 
-    private void OnTriggerStay(Collider other)
+    protected void OnTriggerStay(Collider other)
     {
         if (other.tag == "Player")
         {
             Player player = other.GetComponentInChildren<Player>();
             _uiManager.PickUpWeaponText(true);
+            Debug.Log(this.name + "Collide");
             if (Input.GetKeyDown(KeyCode.E))
             {
                 EquipPlayer(player);
@@ -50,17 +54,12 @@ public class Weapons : MonoBehaviour
         }
     }
 
-    public virtual void RefillAmmo()
-    {
-        _fullClip = 50;
-        _currentClip = _fullClip;
-        _reserveAmmo = _fullClip * 4;
-    }
 
-    private void OnTriggerExit(Collider other)
+    protected void OnTriggerExit(Collider other)
     {
         if (other.tag == "Player")
         {
+            Debug.Log(this.name + "Collide Exit");
             _uiManager.PickUpWeaponText(false);
         }
     }
@@ -68,14 +67,34 @@ public class Weapons : MonoBehaviour
     public virtual void EquipPlayer(Player player)
     {
         player.SwapWeaponWithNew(this);
+        _onGround = false;
         player.SetWeaponActive();
         this.transform.SetParent(player.transform, true);
     }
-    void RemovePickUpWeaponUI()
+    public virtual void RefillAmmo()
+    {
+        _fullClip = 50;
+        _currentClip = _fullClip;
+        _reserveAmmo = _fullClip * 4;
+    }
+    public void RemovePickUpWeaponUI()
     {
         _uiManager.PickUpWeaponText(false);
     }
 
+    private void SetWeaponPlatter()
+    {
+        if (_onGround == true)
+        {
+            _weaponplatter.gameObject.SetActive(true);
+        }
+        else
+        {
+            _weaponplatter.gameObject.SetActive(false);
+        }
+    }
+
+    // SETTERS AND GETTERS
 
     public void SetAmmoProperties(int weaponClip, int weaponReserves)
     {
@@ -83,7 +102,6 @@ public class Weapons : MonoBehaviour
         _reserveAmmo = weaponReserves;
     }
     public float GetTravelTime() { return _travelTime; }
-
     public float GetReloadTime() { return _reloadTime; }
     public float GetDamage() { return _damage; }
     public int GetFullClip() { return _fullClip; }

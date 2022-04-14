@@ -11,7 +11,9 @@ public class Store : MonoBehaviour
     [SerializeField]
     UIManager _uiManager;
     [SerializeField]
-    Weapons[] _weaponsPurchasable;  // Rifle[0], pistol[1],
+    Rifle _riflePurchasable;
+    [SerializeField]
+    Pistol _pistolPurchasable;  
     [SerializeField]
     Store _storeUI;
     [SerializeField]
@@ -22,7 +24,7 @@ public class Store : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _player = GameObject.Find("Player").GetComponent<Player>();
+
     }
 
     // Update is called once per frame
@@ -62,26 +64,47 @@ public class Store : MonoBehaviour
 
     public void BuyRifle()
     {
-        if (_player.GetScore() > 2000)
+        Rifle newRifle = _riflePurchasable;
+        if (_player.GetScore() > 2000 && _player.CheckWeaponsInInventory(newRifle) == false)
         {
-            _weaponsPurchasable[0].EquipPlayer(_player);
+
+            newRifle = Instantiate(_riflePurchasable);
+            newRifle.name = "Rifle";
+            newRifle.SetOnStatus(false);
+            newRifle.EquipPlayer(_player);
             _player.DecreaseScore(2000);
         }
-        else
+        else if (_player.GetScore() < 2000)
         {
             StartCoroutine(NotEnoughMoneyRoutine());
+        } 
+        else
+        {
+            return;
+            //weapon alrady in inventory
         }
+        
     }
     public void BuyPistol()
     {
-        if (_player.GetScore() > 800)
+        Pistol newPistol = _pistolPurchasable;
+        if (_player.GetScore() > 800 && _player.CheckWeaponsInInventory(newPistol) == false)
         {
-            _weaponsPurchasable[1].EquipPlayer(_player);
+            newPistol = Instantiate(_pistolPurchasable);
+            newPistol.name = "Pistol";
+            newPistol.SetOnStatus(false);
+            newPistol.EquipPlayer(_player);
             _player.DecreaseScore(800);
         }
-        else 
+        else if (_player.GetScore() < 800)
         {
+            Destroy(newPistol);
             StartCoroutine(NotEnoughMoneyRoutine());
+        }
+        else
+        {
+            return;
+            //weapon already in inventory
         }
     }
     public void BuyArmor()
@@ -100,6 +123,7 @@ public class Store : MonoBehaviour
         else
         {
             StartCoroutine(NotEnoughMoneyRoutine());
+            _player.DecreaseScore(500);
         }
 
     }

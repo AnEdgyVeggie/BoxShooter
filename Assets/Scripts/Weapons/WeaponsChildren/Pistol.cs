@@ -18,7 +18,14 @@ public class Pistol : Weapons
         anim = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
+    private void Update()
+    {
+        if (_weaponplatter.gameObject == false)
+        {
+            anim.SetBool("InInventory", true);
+        }
+    }
+
     public override void RefillAmmo()
     {
         Debug.LogWarning("Ammo Reload Pistol");
@@ -30,11 +37,16 @@ public class Pistol : Weapons
     public override void EquipPlayer(Player player)
     {
         base.EquipPlayer(player);
+       
         transform.localPosition = new Vector3(0.288f, 0.115f, 0.723f);
         transform.localRotation = Quaternion.identity;
         this.gameObject.layer = LayerMask.NameToLayer("EquippedWeapon");
-        anim.SetBool("InInventory", true);
     }
 
+    public void SetOnStatus(bool ground)
+    {
+        _weaponplatter.gameObject.SetActive(ground);
+        Debug.Log(_weaponplatter.name + "Should be off");
+    }
 
 }

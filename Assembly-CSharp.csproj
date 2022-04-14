@@ -69,7 +69,6 @@
     <Compile Include="Assets\Scripts\Enemy\Enemy.cs" />
     <Compile Include="Assets\Shift - Complete Sci-Fi UI\Scripts\UI Manager\UIManager.cs" />
     <Compile Include="Assets\Scripts\Managers\GameManager.cs" />
-    <Compile Include="Assets\Scripts\Weapons\WeaponsChildren\WeaponPlatter.cs" />
     <Compile Include="Assets\Scripts\Weapons\Weapons.cs" />
     <Compile Include="Assets\Shift - Complete Sci-Fi UI\Scripts\UI Manager\UIManagerGameLogo.cs" />
     <Compile Include="Assets\Shift - Complete Sci-Fi UI\Scripts\Event\TimedEvent.cs" />
