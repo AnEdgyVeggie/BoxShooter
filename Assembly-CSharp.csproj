@@ -58,7 +58,9 @@
   <ItemGroup>
     <Compile Include="Assets\Shift - Complete Sci-Fi UI\Scripts\Editor Handlers\ShiftUIEditorHandler.cs" />
     <Compile Include="Assets\Shift - Complete Sci-Fi UI\Scripts\UI Element\HorizontalSelector.cs" />
-    <Compile Include="Assets\Scripts\PlayerCamera.cs" />
+    <Compile Include="Assets\Scripts\Weapons\WeaponsChildren\NoWeapon.cs" />
+    <Compile Include="Assets\Scripts\PlayerScripts\PlayerCamera.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Enemy Classes\BasicZombie.cs" />
     <Compile Include="Assets\Shift - Complete Sci-Fi UI\Scripts\Buttons\QuickMatchButton.cs" />
     <Compile Include="Assets\Shift - Complete Sci-Fi UI\Scripts\Other\ExitToSystem.cs" />
     <Compile Include="Assets\Shift - Complete Sci-Fi UI\Scripts\UI Manager\UIManagerParticle.cs" />
@@ -77,13 +79,16 @@
     <Compile Include="Assets\Shift - Complete Sci-Fi UI\Scripts\Panel\SplashScreenManager.cs" />
     <Compile Include="Assets\Shift - Complete Sci-Fi UI\Scripts\Buttons\ChapterButton.cs" />
     <Compile Include="Assets\Scripts\Weapons\Bullet.cs" />
+    <Compile Include="Assets\Scripts\Interactables\Store.cs" />
     <Compile Include="Assets\Shift - Complete Sci-Fi UI\Scripts\Panel\MainPanelManager.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\Player.cs" />
     <Compile Include="Assets\Shift - Complete Sci-Fi UI\Scripts\Buttons\ShortcutButton.cs" />
     <Compile Include="Assets\Shift - Complete Sci-Fi UI\Scripts\Panel\ModalWindowManager.cs" />
     <Compile Include="Assets\Shift - Complete Sci-Fi UI\Scripts\UI Element\CustomInputField.cs" />
+    <Compile Include="Assets\Scripts\Enemy\EnemyAI.cs" />
     <Compile Include="Assets\Shift - Complete Sci-Fi UI\Scripts\Other\UIElementInFront.cs" />
     <Compile Include="Assets\Shift - Complete Sci-Fi UI\Scripts\Event\HoldKeyEvent.cs" />
+    <Compile Include="Assets\Scripts\Enemy\EnemyAI\BasicZombieAI.cs" />
     <Compile Include="Assets\Scripts\Managers\UIManager.cs" />
     <Compile Include="Assets\Shift - Complete Sci-Fi UI\Scripts\Input\VirtualCursor.cs" />
     <Compile Include="Assets\Scripts\Weapons\WeaponsChildren\Rifle.cs" />
@@ -116,19 +121,22 @@
     <Compile Include="Assets\Shift - Complete Sci-Fi UI\Scripts\UI Element\SliderManager.cs" />
     <Compile Include="Assets\Shift - Complete Sci-Fi UI\Scripts\UI Element\UIElementSound.cs" />
     <Compile Include="Assets\Shift - Complete Sci-Fi UI\Scripts\Buttons\MainButton.cs" />
-    <Compile Include="Assets\Scripts\Enemy\BasicZombie.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
+    <None Include="Assets\Shift - Complete Sci-Fi UI\Shaders\Masked UI Blur.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
+    <None Include="Assets\Shift - Complete Sci-Fi UI\Shaders\Fast UI Blur.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
+    <None Include="Assets\Shift - Complete Sci-Fi UI\Shaders\UI Particle Additive.shader" />
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF.shader" />
+    <None Include="Assets\Shift - Complete Sci-Fi UI\Read Me.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile SSD.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
@@ -137,6 +145,7 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
+    <None Include="Assets\Shift - Complete Sci-Fi UI\Shaders\UI Blur.shader" />
     <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />

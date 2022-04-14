@@ -28,14 +28,14 @@ public class Bullet : MonoBehaviour
     void BulletTrajectory()
     {
         _rigidBody.transform.Translate(Vector3.up * _bulletSpeed * Time.deltaTime);
+        Destroy(this.gameObject, _player.GetTravelTime());
     }
 
     private void OnTriggerEnter(Collider other)
     {
 
         if (other.tag == "Enviroment")
-        {
-            Debug.LogWarning("BULLET HIT WALL");
+        { 
             Destroy(this.gameObject);
         }
     }

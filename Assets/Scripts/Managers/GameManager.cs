@@ -15,30 +15,25 @@ public class GameManager : MonoBehaviour
         _uiManager = GameObject.Find("UIManager").GetComponent<UIManager>();
         _player = GameObject.Find("Player").GetComponent<Player>();
         _rotate = GameObject.Find("Player").GetComponent<Rotate>();
+
     }
+
 
     // Update is called once per frame
     void Update()
     {
         MouseVisibility();
 
-        if (Input.GetKeyDown(KeyCode.Escape)) {
+        if (Input.GetKeyDown(KeyCode.P)) {
             PauseGame();
         }
     }
 
-
-    public int MaxRoundEnemies(int round)
-    {
-        return ((((round + (10 + round)) * 100) / 40) + round);
-    }
-
-
     void MouseVisibility()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.P))
         { Cursor.visible = true; }
-        else if (Input.GetMouseButtonDown(0))
+        else if (Input.GetMouseButtonDown(0) && _uiManager.GetInMenu() == false)
         { Cursor.visible = false; }
     }
     void PauseGame()

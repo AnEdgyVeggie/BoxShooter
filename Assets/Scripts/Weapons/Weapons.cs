@@ -14,7 +14,7 @@ public class Weapons : MonoBehaviour
     [SerializeField]
     protected int _reserveAmmo = 150;  //ammo remaining to be used
     [SerializeField]
-    protected float _reloadTime = 1.5f;
+    protected float _reloadTime = 1.5f, _travelTime = 2.5f;
     [SerializeField]
     protected float _damage = 2;
 
@@ -50,12 +50,18 @@ public class Weapons : MonoBehaviour
         }
     }
 
+    public virtual void RefillAmmo()
+    {
+        _fullClip = 50;
+        _currentClip = _fullClip;
+        _reserveAmmo = _fullClip * 4;
+    }
+
     private void OnTriggerExit(Collider other)
     {
         if (other.tag == "Player")
         {
             _uiManager.PickUpWeaponText(false);
-            Debug.LogWarning("EXIT");
         }
     }
 
@@ -76,6 +82,7 @@ public class Weapons : MonoBehaviour
         _currentClip = weaponClip;
         _reserveAmmo = weaponReserves;
     }
+    public float GetTravelTime() { return _travelTime; }
 
     public float GetReloadTime() { return _reloadTime; }
     public float GetDamage() { return _damage; }

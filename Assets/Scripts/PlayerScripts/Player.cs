@@ -5,27 +5,26 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     // WEAPON AND AMMUNITION VARIABLES
-    [SerializeField]
-    GameObject _bulletPrefab;
-    
-    [SerializeField]
-    Weapons[] _weaponInventory;
-    [SerializeField]
-    GameObject _laser;
-    
-    [SerializeField]
+    [Header("Weapon Stats")]
     int _currentClip, _reserveAmmo, _fullClip;
-    [SerializeField]
-    float _reloadTime, _damage;
-    [SerializeField]
+    float _reloadTime, _damage, _travelTime;
     bool _isReloading = false, _canfire = true, _weaponsActive = false;
 
     // SCORE AND OBJECTIVE VARIABLES
+    [Header("Score and Objective Variables")]
     [SerializeField]
     int _score = 0;
 
+    [Header("Prefabs")]
+    [SerializeField]
+    GameObject _bulletPrefab;
+    [SerializeField]
+    GameObject _laser;
+    [SerializeField]
+    Weapons[] _weaponInventory;
 
-    // GAMEOBJECT VARIABLES
+    // COMPONENT VARIABLES
+    [Header("Components")]
     Player _player;
     UIManager _uiManager;
     PlayerAnimation _playAnim;
@@ -44,9 +43,8 @@ public class Player : MonoBehaviour
         _playAnim = GetComponent<PlayerAnimation>();
 
         _audio = this.GetComponent<AudioSource>();
+        HideCursor();
 
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
@@ -72,7 +70,6 @@ public class Player : MonoBehaviour
         }
 
     }
-
 
     void FireWeapon()
     {
@@ -137,17 +134,22 @@ public class Player : MonoBehaviour
 
     public void SwapWeaponWithNew(Weapons swapped)
     {
-        if (_weaponInventory[0])
+
+        if (_weaponInventory[0].name == "Unarmed")
+        {
+            _weaponInventory[0] = swapped;
+        }
+        else if (_weaponInventory[0].name != "Unarmed" && _weaponInventory[1].name == "Unarmed")
         {
             _weaponInventory[1] = _weaponInventory[0];
+            _weaponInventory[0] = swapped;
         }
 
-        _weaponInventory[0] = swapped;
         WeaponStatsGetters();
         HideSecondWeapon();
     }
 
-    public void SwapWeaponInventory()
+    private void SwapWeaponInventory()
     {
         _weaponInventory[0].SetAmmoProperties(_currentClip, _reserveAmmo);
         Weapons temp = _weaponInventory[1];
@@ -165,23 +167,6 @@ public class Player : MonoBehaviour
             _laser.SetActive(true);
         }
     }
-
-    private void WeaponStatsGetters()
-    {
-        this._damage = _weaponInventory[0].GetDamage();
-        this._currentClip = _weaponInventory[0].GetCurrentClip();
-        this._reserveAmmo = _weaponInventory[0].GetReserveAmmo();
-        this._reloadTime = _weaponInventory[0].GetReloadTime();
-        this._fullClip = _weaponInventory[0].GetFullClip();
-
-        _canfire = (_reserveAmmo > 0) ?  true : false;
-
-        _uiManager.UpdateAmmo(_currentClip, _fullClip);
-        _uiManager.UpdateReserveAmmo(_reserveAmmo);
-        _uiManager.UpdateWeaponType(_weaponInventory[0].name);
-    }
-    public float GetDamage() { return _damage; }
-
 
     private void HideSecondWeapon()
     {
@@ -202,9 +187,48 @@ public class Player : MonoBehaviour
 
     public void IncreaseScore(int points)
     { 
-        _score = _score +  points;
+        _score +=  points;
         _uiManager.DisplayScore(_score);
+    }
+    public void DecreaseScore(int points)
+    {
+        _score -= points;
+        _uiManager.DisplayScore(_score);
+
+    }
+
+    public void RefillAmmo()
+    {
+        Debug.LogError("Ammo Reload Player");
+        _weaponInventory[0].RefillAmmo();
+        _weaponInventory[1].RefillAmmo();
+    }
+
+    public void HideCursor()
+    {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
 
+    // Getters
+    private void WeaponStatsGetters()
+    {
+        this._damage = _weaponInventory[0].GetDamage();
+        this._currentClip = _weaponInventory[0].GetCurrentClip();
+        this._reserveAmmo = _weaponInventory[0].GetReserveAmmo();
+        this._reloadTime = _weaponInventory[0].GetReloadTime();
+        this._fullClip = _weaponInventory[0].GetFullClip();
+        this._travelTime = _weaponInventory[0].GetTravelTime();
+
+        _canfire = (_reserveAmmo > 0) ?  true : false;
+
+        _uiManager.UpdateAmmo(_currentClip, _fullClip);
+        _uiManager.UpdateReserveAmmo(_reserveAmmo);
+        _uiManager.UpdateWeaponType(_weaponInventory[0].name);
+    }
+
+    public float GetDamage() { return _damage; }
+    public float GetTravelTime() { return _travelTime; }
+    public int GetScore() { return _score; }
 }

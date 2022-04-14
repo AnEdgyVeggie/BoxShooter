@@ -11,7 +11,7 @@ public class EnemySpawnManager : MonoBehaviour
     bool _spawning = false;
 
     [SerializeField]
-    Enemy[] enemyTypes;
+    EnemyAI[] enemyTypes;
     [SerializeField]
     GameObject[] spawnLocations;
 
@@ -41,7 +41,6 @@ public class EnemySpawnManager : MonoBehaviour
         {
             StartCoroutine(EnemySpawnRoutine());
             StartCoroutine(CheckEnemySpawnRoutine());
-            Debug.LogWarning("SPAWNING ENEMIES");
 
             if (_enemiesKilled == _maxRoundEnemies)
             {
@@ -51,7 +50,6 @@ public class EnemySpawnManager : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("CHECKING TO SPAWN ENEMIES");
             StartCoroutine(CheckEnemySpawnRoutine());
         }
     }
@@ -62,7 +60,7 @@ public class EnemySpawnManager : MonoBehaviour
         {
             _spawning = true;
             yield return new WaitForSeconds(_spawnRate);
-            Enemy enemySpawn = Instantiate(enemyTypes[Random.Range(0, enemyTypes.Length)], spawnLocations[Random.Range(0, spawnLocations.Length)].transform.position, Quaternion.identity);
+            EnemyAI enemySpawn = Instantiate(enemyTypes[Random.Range(0, enemyTypes.Length)], spawnLocations[Random.Range(0, spawnLocations.Length)].transform.position, Quaternion.identity);
             enemySpawn.transform.parent = this.transform.Find("Enemies");
             _currentEnemiesAlive++;
             _roundEnemiesSpawned++;
@@ -86,7 +84,6 @@ public class EnemySpawnManager : MonoBehaviour
         _currentEnemiesAlive = 0;
         _roundEnemiesSpawned = 0;
         UpdateMaxRoundEnemies();
-
 
         if (round % 5 == 0)
         {

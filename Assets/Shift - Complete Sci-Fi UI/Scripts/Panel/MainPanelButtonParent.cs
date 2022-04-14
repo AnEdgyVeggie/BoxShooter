@@ -34,5 +34,16 @@ namespace Michsky.UI.Shift
             }
         }
     }
+#elif UNITY_2021_2_OR_NEWER
+    public class MainPanelButtonParent : MonoBehaviour
+    {
+        private List<Animator> mainButtons = new List<Animator>();
+
+        void Awake()
+        {
+            foreach (Transform child in transform) { mainButtons.Add(child.GetComponent<Animator>()); }
+            for (int i = 0; i < mainButtons.Count; ++i) { mainButtons[i].Play("Dissolve to Normal"); }
+        }
+    }
 #endif
 }

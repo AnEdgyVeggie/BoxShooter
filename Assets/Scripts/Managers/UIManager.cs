@@ -7,14 +7,19 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField]
     Text _ammoCounter, _ammoCounterBack, _maxAmmoCounter, _maxAmmoCounterBack, _pickupWeaponText, _paused,
-        _weaponType, _weaponTypeBack, _scoreDisplay, _scoreDisplayBack, _round, _roundBack;
+        _weaponType, _weaponTypeBack, _scoreDisplay, _scoreDisplayBack, _round, _roundBack, _visitStore;
+    [SerializeField]
+    Store _storeUI;
+
+    [SerializeField]
+    bool _inMenu = false;
+
 
 
     // Start is called before the first frame update
     void Start()
     {
-        _weaponType.text = "Empty";
-        _scoreDisplay.text = "$0";
+
     }
 
     public void PickUpWeaponText(bool is_active)
@@ -43,6 +48,7 @@ public class UIManager : MonoBehaviour
     public void PausedGame(bool isActive)
     {
         _paused.gameObject.SetActive(isActive);
+        _inMenu = isActive;
     }
     public void DisplayScore(int score)
     {
@@ -54,4 +60,11 @@ public class UIManager : MonoBehaviour
         _round.text = "Round " + round.ToString();
         _roundBack.text = "Round " + round.ToString();
     }
+    public void VisitStoreEnable(bool isActive)
+    {
+        _visitStore.gameObject.SetActive(isActive);
+    }
+
+    public bool GetInMenu() { return _inMenu; }
+    public void SetInMenu(bool isActive) { _inMenu = isActive; }
 }

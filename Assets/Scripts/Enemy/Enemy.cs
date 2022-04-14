@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    protected float _health = 15, _speed = 3;
+    protected float _health = 15;
     protected int _pointsOnHit, _pointsOnDeath;
 
     protected GameObject[] _loot;
     protected Player _player;
     protected EnemySpawnManager _enSpawn;
     protected bool _canDamage = true;
+
+    protected EnemyAI _AI;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +23,8 @@ public class Enemy : MonoBehaviour
 
         _enSpawn = GameObject.Find("EnemySpawnManager").GetComponent<EnemySpawnManager>();
         Init();
+
+        _AI = GetComponentInParent<EnemyAI>();
     }
 
     public virtual void Init()
@@ -29,15 +33,7 @@ public class Enemy : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        transform.position = Vector3.MoveTowards(transform.position, _player.transform.position, _speed * Time.deltaTime);
-    }
 
-    private void FixedUpdate()
-    {
-  
-    }
     public void TakeDamage(float damage)
     {
         if (_canDamage)
@@ -49,9 +45,9 @@ public class Enemy : MonoBehaviour
 
             if (_health <= 0)
             {
-                Destroy(this.gameObject);
                 _player.IncreaseScore(_pointsOnDeath);
                 _enSpawn.DecrementEnemiesAlive();
+                _AI.DestroyEnemy();
             }
         }
     }
@@ -67,7 +63,10 @@ public class Enemy : MonoBehaviour
         {
             Bullet bullet = other.GetComponent<Bullet>();
             bullet.SetSpeed(0);
-            TakeDamage(_player.GetDamage());
+            TakeDamage(
+                _player.
+                GetDamage()
+                );
 
             Destroy(bullet.gameObject);
         }

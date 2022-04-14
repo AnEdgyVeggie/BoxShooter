@@ -8,17 +8,24 @@ public class Pistol : Weapons
 
     public override void Init()
     {
-        _fullClip = 30;
-        _currentClip = 30;
-        _reserveAmmo = 90;
+        _fullClip = 16;
+        _currentClip = _fullClip;
+        _reserveAmmo = _fullClip * 5;
         _reloadTime = 1f;
         _damage = 10;
+        _travelTime = 0.9f;
 
         anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
-
+    public override void RefillAmmo()
+    {
+        Debug.LogWarning("Ammo Reload Pistol");
+        _fullClip = 16;
+        _currentClip = _fullClip;
+        _reserveAmmo = _fullClip * 5;
+    }
 
     public override void EquipPlayer(Player player)
     {
