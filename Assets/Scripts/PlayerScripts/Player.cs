@@ -6,17 +6,17 @@ public class Player : MonoBehaviour
 {
     // WEAPON AND AMMUNITION VARIABLES
     [Header("Weapon Stats")]
-    [SerializeField]
     int _currentClip, _reserveAmmo, _fullClip;
-    [SerializeField]
     float _reloadTime, _damage, _travelTime;
-    [SerializeField]
-    bool _isReloading = false, _canfire = true, _weaponsActive = false;
+    bool _isReloading = false, _canfire = true;
 
     // SCORE AND OBJECTIVE VARIABLES
     [Header("Score and Objective Variables")]
+    int _score = 0, _health = 150, _maxHealth = 150;
     [SerializeField]
-    int _score = 0;
+    int _armor = 0, _armorTier = 0, _maxArmor = 50; 
+    float _healTime = 7.5f;
+
 
     [Header("Prefabs")]
     [SerializeField]
@@ -61,8 +61,6 @@ public class Player : MonoBehaviour
             {
                 FireWeapon();
             }
-
-
             if (Input.GetAxisRaw("Scroll") > 0 || Input.GetAxisRaw("Scroll") < 0)
             {
                 SwapWeaponInventory();
@@ -72,35 +70,43 @@ public class Player : MonoBehaviour
             {
                 ReloadWeapon();
             }
-        }
 
+            if (_weaponInventory[0].name == "Unarmed")
+            {
+                _laser.gameObject.SetActive(false);
+            }
+            else
+            {
+                _laser.gameObject.SetActive(true);
+            }
+        }
     }
+
+    /// WEAPON METHODS
+    /// All methods dealing with weapon function, stats,
+    /// variables, etc.
 
     void FireWeapon()
     {
-        if (_weaponsActive)
+        Vector3 weaponPosition = _weaponInventory[0].transform.position;
+        Vector3 playerRotation = _player.transform.eulerAngles;
+
+        if (Input.GetMouseButtonDown(0) && _isReloading == false && _canfire == true)
         {
-            Vector3 weaponPosition = _weaponInventory[0].transform.position;
-            Vector3 playerRotation = _player.transform.eulerAngles;
+            Instantiate(_bulletPrefab, new Vector3(weaponPosition.x, weaponPosition.y, weaponPosition.z), Quaternion.Euler(0, playerRotation.y + 90, 90));
+            _audio.Play();
 
-            if (Input.GetMouseButtonDown(0) && _isReloading == false && _canfire == true)
+            _currentClip--;
+            _uiManager.UpdateAmmo(_currentClip, _fullClip);
+
+            if (_currentClip == 0)
             {
-                Instantiate(_bulletPrefab, new Vector3(weaponPosition.x, weaponPosition.y, weaponPosition.z), Quaternion.Euler(0, playerRotation.y + 90, 90));
-                _audio.Play();
-
-                _currentClip--;
-                _uiManager.UpdateAmmo(_currentClip, _fullClip);
-
-                if (_currentClip == 0)
-                {
-                    _canfire = false;
-                    Debug.Log("Out of ammo");
-                }
+                _canfire = false;
             }
-            if ((_currentClip < _reserveAmmo && Input.GetKeyDown(KeyCode.R)) || _currentClip == 0 && Input.GetMouseButtonDown(0) && _reserveAmmo > 0)
-            {
-                StartCoroutine(WeaponReloadRoutine());
-            }
+        }
+        if ((_currentClip < _fullClip && Input.GetKeyDown(KeyCode.R)) || _currentClip == 0 && Input.GetMouseButtonDown(0) && _reserveAmmo > 0)
+        {
+            StartCoroutine(WeaponReloadRoutine());
         }
     }
 
@@ -162,14 +168,6 @@ public class Player : MonoBehaviour
         WeaponStatsGetters();
     }
 
-    public void SetWeaponActive()
-    {
-        if (_weaponsActive == false)
-        {
-            _weaponsActive = true;
-            _laser.SetActive(true);
-        }
-    }
 
     private void HideSecondWeapon()
     {
@@ -182,38 +180,12 @@ public class Player : MonoBehaviour
             _weaponInventory[0].gameObject.SetActive(true);
         }
     }
-
-    public void SetPaused(bool pauseGame)
-    {
-        _paused = pauseGame;
-    }
-
-    public void IncreaseScore(int points)
-    { 
-        _score +=  points;
-        _uiManager.DisplayScore(_score);
-    }
-    public void DecreaseScore(int points)
-    {
-        _score -= points;
-        _uiManager.DisplayScore(_score);
-
-    }
-
     public void RefillAmmo()
     {
-        Debug.LogError("Ammo Reload Player");
         _weaponInventory[0].RefillAmmo();
         _weaponInventory[1].RefillAmmo();
+        WeaponStatsGetters();
     }
-
-    public void HideCursor()
-    {
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
-    }
-
-
     public bool CheckWeaponsInInventory(Weapons swappable)
     {
         foreach (Weapons weap in _weaponInventory)
@@ -225,8 +197,8 @@ public class Player : MonoBehaviour
         }
         return false;
     }
-
-    // Getters
+    
+    /// WEAPON STAT GETTERS
     private void WeaponStatsGetters()
     {
         this._damage = _weaponInventory[0].GetDamage();
@@ -245,5 +217,71 @@ public class Player : MonoBehaviour
 
     public float GetDamage() { return _damage; }
     public float GetTravelTime() { return _travelTime; }
+
+
+    /// OBJECTIVE METHODS
+    /// Score, health, and methods dealing in
+    /// survival or core gameplay
+
+    private void DecreaseHealth(int hitpoints)
+    {
+        _health -= hitpoints;
+    }
+    private void RegainHealth()
+    {
+        StartCoroutine(RegainHealthRoutine());
+    }
+    IEnumerator RegainHealthRoutine()
+    {
+        yield return new WaitForSeconds(_healTime);
+         while (_health < _maxHealth)
+        {
+            yield return new WaitForSeconds(0.1f);
+            _health++;
+        }
+    }
+
+    public void AddArmor()
+    {
+        if (_armorTier < 3)
+        {
+            _armorTier++;
+            _maxArmor = _armorTier * 50;
+        }
+        if (_armor < _maxArmor)
+        {
+            _armor += 50;
+            if (_armor > _maxArmor)
+            {
+                _armor = _maxArmor;
+            }
+        }
+    }
+
+    public void IncreaseScore(int points)
+    { 
+        _score +=  points;
+        _uiManager.DisplayScore(_score);
+    }
+    public void DecreaseScore(int points)
+    {
+        _score -= points;
+        _uiManager.DisplayScore(_score);
+
+    }
     public int GetScore() { return _score; }
+
+
+
+    public void SetPaused(bool pauseGame)
+    {
+        _paused = pauseGame;
+    }
+    public void HideCursor()
+    {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
+
 }

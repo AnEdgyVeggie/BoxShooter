@@ -2,23 +2,28 @@ ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
     - BasicZombie
+    - BasicZombieAI
     - Bullet
     - EnemySpawnManager
     - GameManager
     - Michsky.UI.Shift.LayoutGroupPositionFix
     - Michsky.UI.Shift.MainPanelButton
     - Michsky.UI.Shift.QuickMatchButton
+    - Michsky.UI.Shift.ShortcutButton
+    - Michsky.UI.Shift.SpotlightButton
     - Michsky.UI.Shift.UIElementSound
+    - Michsky.UI.Shift.UIManager
     - Michsky.UI.Shift.UIManagerImage
     - Michsky.UI.Shift.UIManagerText
+    - NoWeapon
     - Pistol
     - Player
     - PlayerAnimation
     - PlayerCamera
     - Rifle
     - Rotate
+    - Store
     - UIManager
-    - WeaponPlatter
     Cinemachine.dll:
     - Cinemachine.CinemachineBrain
     - Cinemachine.CinemachineComposer
@@ -50,6 +55,8 @@ ScriptsOnlyBuild:
     - UnityEditor.TestTools.TestRunner.TestListCacheData
     - UnityEditor.TestTools.TestRunner.TestRun.TestJobDataHolder
     UnityEngine.UI.dll:
+    - UnityEngine.EventSystems.EventSystem
+    - UnityEngine.EventSystems.StandaloneInputModule
     - UnityEngine.UI.AspectRatioFitter
     - UnityEngine.UI.Button
     - UnityEngine.UI.CanvasScaler
@@ -100,84 +107,100 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 95
       Script: {instanceID: 0}
+    - Class: 102
+      Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1464}
+      Script: {instanceID: 636}
     - Class: 114
-      Script: {instanceID: 1466}
+      Script: {instanceID: 1472}
+    - Class: 114
+      Script: {instanceID: 1474}
+    - Class: 114
+      Script: {instanceID: 1476}
+    - Class: 114
+      Script: {instanceID: 1478}
+    - Class: 114
+      Script: {instanceID: 1482}
+    - Class: 114
+      Script: {instanceID: 1484}
     - Class: 114
       Script: {instanceID: 1556}
     - Class: 114
-      Script: {instanceID: 1626}
+      Script: {instanceID: 1572}
     - Class: 114
-      Script: {instanceID: 1648}
+      Script: {instanceID: 1642}
     - Class: 114
-      Script: {instanceID: 1712}
+      Script: {instanceID: 1724}
     - Class: 114
-      Script: {instanceID: 1788}
+      Script: {instanceID: 1800}
     - Class: 114
-      Script: {instanceID: 2092}
+      Script: {instanceID: 2104}
     - Class: 114
-      Script: {instanceID: 2102}
+      Script: {instanceID: 2114}
     - Class: 114
-      Script: {instanceID: 2394}
+      Script: {instanceID: 2406}
     - Class: 114
-      Script: {instanceID: 2428}
+      Script: {instanceID: 2440}
     - Class: 114
-      Script: {instanceID: 2446}
+      Script: {instanceID: 2458}
     - Class: 114
-      Script: {instanceID: 2500}
+      Script: {instanceID: 2512}
     - Class: 114
-      Script: {instanceID: 2608}
+      Script: {instanceID: 2620}
     - Class: 114
-      Script: {instanceID: 2630}
+      Script: {instanceID: 2642}
     - Class: 114
-      Script: {instanceID: 2686}
+      Script: {instanceID: 2674}
     - Class: 114
-      Script: {instanceID: 2702}
+      Script: {instanceID: 2698}
     - Class: 114
-      Script: {instanceID: 2752}
+      Script: {instanceID: 2844}
     - Class: 114
-      Script: {instanceID: 2834}
+      Script: {instanceID: 2884}
     - Class: 114
-      Script: {instanceID: 2874}
+      Script: {instanceID: 2902}
     - Class: 114
-      Script: {instanceID: 2892}
+      Script: {instanceID: 3060}
     - Class: 114
-      Script: {instanceID: 3058}
+      Script: {instanceID: 3070}
     - Class: 114
-      Script: {instanceID: 3086}
+      Script: {instanceID: 3098}
     - Class: 114
-      Script: {instanceID: 3232}
+      Script: {instanceID: 3238}
     - Class: 114
-      Script: {instanceID: 3378}
+      Script: {instanceID: 3244}
     - Class: 114
-      Script: {instanceID: 3482}
+      Script: {instanceID: 3388}
     - Class: 114
-      Script: {instanceID: 3604}
+      Script: {instanceID: 3392}
     - Class: 114
-      Script: {instanceID: 3860}
+      Script: {instanceID: 3498}
     - Class: 114
-      Script: {instanceID: 3864}
+      Script: {instanceID: 3620}
     - Class: 114
-      Script: {instanceID: 3966}
+      Script: {instanceID: 3876}
     - Class: 114
-      Script: {instanceID: 4134}
+      Script: {instanceID: 3880}
     - Class: 114
-      Script: {instanceID: 4432}
+      Script: {instanceID: 3982}
     - Class: 114
-      Script: {instanceID: 4452}
+      Script: {instanceID: 4150}
     - Class: 114
-      Script: {instanceID: 4676}
+      Script: {instanceID: 4448}
     - Class: 114
-      Script: {instanceID: 4718}
+      Script: {instanceID: 4468}
     - Class: 114
-      Script: {instanceID: 4800}
+      Script: {instanceID: 4692}
     - Class: 114
-      Script: {instanceID: 4920}
+      Script: {instanceID: 4734}
+    - Class: 114
+      Script: {instanceID: 4816}
+    - Class: 114
+      Script: {instanceID: 4936}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -185,6 +208,8 @@ ScriptsOnlyBuild:
     - Class: 136
       Script: {instanceID: 0}
     - Class: 157
+      Script: {instanceID: 0}
+    - Class: 195
       Script: {instanceID: 0}
     - Class: 196
       Script: {instanceID: 0}
@@ -198,7 +223,17 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 225
       Script: {instanceID: 0}
+    - Class: 238
+      Script: {instanceID: 0}
+    - Class: 329
+      Script: {instanceID: 0}
   scriptHashData:
+  - hash:
+      serializedVersion: 2
+      Hash: 0dbc3be398b4869a5c8d0d8481ee402c
+    assemblyName: UnityEngine.UI.dll
+    namespaceName: UnityEngine.UI
+    className: LayoutElement
   - hash:
       serializedVersion: 2
       Hash: cf9f5cf2c3145a37ac07f00e50e460f9
@@ -211,6 +246,18 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: Image
+  - hash:
+      serializedVersion: 2
+      Hash: ae83e830e7a90c0aff918c4c2e520825
+    assemblyName: UnityEngine.UI.dll
+    namespaceName: UnityEngine.UI
+    className: GraphicRaycaster
+  - hash:
+      serializedVersion: 2
+      Hash: bcaee4c2a83047257b5f47d6ed264b75
+    assemblyName: UnityEngine.UI.dll
+    namespaceName: UnityEngine.UI
+    className: Toggle
   - hash:
       serializedVersion: 2
       Hash: 748dd2a2a28da4e618912da5ac45684b
@@ -255,6 +302,12 @@ ScriptsOnlyBuild:
     className: CinemachineVolumeSettings
   - hash:
       serializedVersion: 2
+      Hash: 1238e15ed42e158e940ef7e8d566eb73
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: NoWeapon
+  - hash:
+      serializedVersion: 2
       Hash: 77aaaaa51f7a8d8ff333a879741e47d2
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
@@ -279,22 +332,10 @@ ScriptsOnlyBuild:
     className: BasicZombie
   - hash:
       serializedVersion: 2
-      Hash: bcaee4c2a83047257b5f47d6ed264b75
-    assemblyName: UnityEngine.UI.dll
-    namespaceName: UnityEngine.UI
-    className: Toggle
-  - hash:
-      serializedVersion: 2
       Hash: 6dd3dc11942e98c0a809c81f95fc960c
     assemblyName: Cinemachine.dll
     namespaceName: Cinemachine
     className: CinemachineExternalCamera
-  - hash:
-      serializedVersion: 2
-      Hash: 0dbc3be398b4869a5c8d0d8481ee402c
-    assemblyName: UnityEngine.UI.dll
-    namespaceName: UnityEngine.UI
-    className: LayoutElement
   - hash:
       serializedVersion: 2
       Hash: 6bc76e17f0d5e93f3eea7f5a2fe227f3
@@ -525,13 +566,7 @@ ScriptsOnlyBuild:
     className: GameManager
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: WeaponPlatter
-  - hash:
-      serializedVersion: 2
-      Hash: 794197058eb37b1a279ca5c2760ad40c
+      Hash: 1238e15ed42e158e940ef7e8d566eb73
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Weapons
@@ -547,12 +582,6 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.TestRunner.dll
     namespaceName: UnityEngine.TestRunner.Utils
     className: TestRunCallbackListener
-  - hash:
-      serializedVersion: 2
-      Hash: ae83e830e7a90c0aff918c4c2e520825
-    assemblyName: UnityEngine.UI.dll
-    namespaceName: UnityEngine.UI
-    className: GraphicRaycaster
   - hash:
       serializedVersion: 2
       Hash: 7a592576d6aa24cc8ab7500964c96f91
@@ -609,7 +638,7 @@ ScriptsOnlyBuild:
     className: CinemachineTrack
   - hash:
       serializedVersion: 2
-      Hash: 58990396cee04b1e85f8bd8805ea1263
+      Hash: 91cf3a5c618e4d1495d988eec0ff8478
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: EnemySpawnManager
@@ -681,6 +710,12 @@ ScriptsOnlyBuild:
     className: CinemachineMixingCamera
   - hash:
       serializedVersion: 2
+      Hash: b7d4aadf65cb5cc2614d78791112d7c0
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Store
+  - hash:
+      serializedVersion: 2
       Hash: a66794b62dbf044668a5f102bb7908c2
     assemblyName: Cinemachine.dll
     namespaceName: Cinemachine
@@ -699,7 +734,7 @@ ScriptsOnlyBuild:
     className: MainPanelManager
   - hash:
       serializedVersion: 2
-      Hash: bb5cab16c41242b68f0c88f6fb22841f
+      Hash: 32f8e473de1f1113dd17b0ee55da7b32
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Player
@@ -747,6 +782,12 @@ ScriptsOnlyBuild:
     className: Outline
   - hash:
       serializedVersion: 2
+      Hash: 0347a4f6a4a2d912d9e496f2afc37840
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: EnemyAI
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Cinemachine.dll
     namespaceName: Cinemachine
@@ -783,7 +824,13 @@ ScriptsOnlyBuild:
     className: PlayerQuitHandler
   - hash:
       serializedVersion: 2
-      Hash: 076669a2b2a9bbf1c87b087f7eb9e991
+      Hash: 0347a4f6a4a2d912d9e496f2afc37840
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: BasicZombieAI
+  - hash:
+      serializedVersion: 2
+      Hash: 8ab9af1d293acb331620fbf6cdd957ce
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: UIManager
@@ -819,7 +866,7 @@ ScriptsOnlyBuild:
     className: NoiseSettings
   - hash:
       serializedVersion: 2
-      Hash: 794197058eb37b1a279ca5c2760ad40c
+      Hash: 1238e15ed42e158e940ef7e8d566eb73
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Rifle
@@ -945,7 +992,7 @@ ScriptsOnlyBuild:
     className: PointerEnterEvents
   - hash:
       serializedVersion: 2
-      Hash: 794197058eb37b1a279ca5c2760ad40c
+      Hash: 1238e15ed42e158e940ef7e8d566eb73
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Pistol

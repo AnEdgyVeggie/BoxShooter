@@ -254,16 +254,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1d7b8b42f4360840b90f3086e332301, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _currentClip: 16
-  _reserveAmmo: 60
-  _fullClip: 16
-  _reloadTime: 1
-  _damage: 10
-  _travelTime: 0.9
-  _isReloading: 0
-  _canfire: 1
-  _weaponsActive: 1
-  _score: 0
+  _armor: 0
+  _armorTier: 0
+  _maxArmor: 50
   _bulletPrefab: {fileID: 8169390353576493868, guid: 5201dad48b01abe42a9240133203698e, type: 3}
   _laser: {fileID: 1792533621}
   _weaponInventory:
@@ -3081,7 +3074,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.38268343, y: -0.0000000395738, z: 0.000000095523816, w: 0.92387956}
+  m_LocalRotation: {x: 0.38268343, y: -0.000000040269903, z: 0.00000009720607, w: 0.92387956}
   m_LocalPosition: {x: 0, y: 17.5, z: -18.01}
   m_LocalScale: {x: 1, y: 0, z: 0}
   m_Children:
@@ -3462,6 +3455,34 @@ PrefabInstance:
     - target: {fileID: 114277784963400750, guid: 338900df3c3978a4c87e8a15232be49e, type: 3}
       propertyPath: m_Color.r
       value: 0.15686275
+      objectReference: {fileID: 0}
+    - target: {fileID: 114591183772582858, guid: 338900df3c3978a4c87e8a15232be49e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114591183772582858, guid: 338900df3c3978a4c87e8a15232be49e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114591183772582858, guid: 338900df3c3978a4c87e8a15232be49e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1932259104}
+    - target: {fileID: 114591183772582858, guid: 338900df3c3978a4c87e8a15232be49e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114591183772582858, guid: 338900df3c3978a4c87e8a15232be49e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: BuyArmor
+      objectReference: {fileID: 0}
+    - target: {fileID: 114591183772582858, guid: 338900df3c3978a4c87e8a15232be49e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Store, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 114591183772582858, guid: 338900df3c3978a4c87e8a15232be49e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 114659361006895506, guid: 338900df3c3978a4c87e8a15232be49e, type: 3}
       propertyPath: m_Color.b
@@ -4056,7 +4077,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 224162242725361320, guid: 7ea731f501442984589dad30e8f89c28, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 31.13
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224162242725361320, guid: 7ea731f501442984589dad30e8f89c28, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -4080,7 +4101,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 224239615779024140, guid: 7ea731f501442984589dad30e8f89c28, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 31.13
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224239615779024140, guid: 7ea731f501442984589dad30e8f89c28, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -4104,7 +4125,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 224258100162751188, guid: 7ea731f501442984589dad30e8f89c28, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 31.13
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224258100162751188, guid: 7ea731f501442984589dad30e8f89c28, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -4164,7 +4185,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 224681124713160502, guid: 7ea731f501442984589dad30e8f89c28, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 97.655
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224681124713160502, guid: 7ea731f501442984589dad30e8f89c28, type: 3}
       propertyPath: m_AnchoredPosition.y

@@ -68,7 +68,6 @@ public class Weapons : MonoBehaviour
     {
         player.SwapWeaponWithNew(this);
         _onGround = false;
-        player.SetWeaponActive();
         this.transform.SetParent(player.transform, true);
     }
     public virtual void RefillAmmo()

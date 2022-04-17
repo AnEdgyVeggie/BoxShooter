@@ -120,6 +120,9 @@
     <Compile Include="Assets\Shift - Complete Sci-Fi UI\Scripts\UI Element\SliderManager.cs" />
     <Compile Include="Assets\Shift - Complete Sci-Fi UI\Scripts\UI Element\UIElementSound.cs" />
     <Compile Include="Assets\Shift - Complete Sci-Fi UI\Scripts\Buttons\MainButton.cs" />
+    <Compile Include="Assets\Scripts\Loot\Loot.cs" />
+    <Compile Include="Assets\Scripts\Loot\LootChildren\AmmoBox.cs" />
+    <Compile Include="Assets\Scripts\Loot\LootChildren\Armor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

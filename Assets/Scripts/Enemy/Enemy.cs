@@ -7,6 +7,10 @@ public class Enemy : MonoBehaviour
     protected float _health = 15;
     protected int _pointsOnHit, _pointsOnDeath;
 
+    // DROP LOOT
+    [SerializeField]
+    protected Loot[] _droppable;
+
     protected GameObject[] _loot;
     protected Player _player;
     protected EnemySpawnManager _enSpawn;
@@ -47,6 +51,10 @@ public class Enemy : MonoBehaviour
             {
                 _player.IncreaseScore(_pointsOnDeath);
                 _enSpawn.DecrementEnemiesAlive();
+                if (Random.Range(0, 75) == 1)
+                {
+                    Instantiate(_droppable[Random.Range(0, _droppable.Length)], transform.position, Quaternion.identity);
+                }
                 _AI.DestroyEnemy();
             }
         }

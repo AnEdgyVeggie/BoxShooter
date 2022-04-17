@@ -19,20 +19,6 @@ public class Store : MonoBehaviour
     [SerializeField]
     Player _player;
 
-    
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     private void OnTriggerStay(Collider other)
     {
         if (other.tag == "Player")
@@ -83,7 +69,6 @@ public class Store : MonoBehaviour
             return;
             //weapon alrady in inventory
         }
-        
     }
     public void BuyPistol()
     {
@@ -111,7 +96,12 @@ public class Store : MonoBehaviour
     {
         if (_player.GetScore() > 1500)
         {
-
+            _player.AddArmor();
+            _player.DecreaseScore(1500);
+        }
+        else
+        {
+            StartCoroutine(NotEnoughMoneyRoutine());
         }
     }
     public void BuyAmmo()
@@ -119,13 +109,12 @@ public class Store : MonoBehaviour
         if (_player.GetScore() > 500)
         {
             _player.RefillAmmo();
+            _player.DecreaseScore(500);
         }
         else
         {
             StartCoroutine(NotEnoughMoneyRoutine());
-            _player.DecreaseScore(500);
         }
-
     }
 
     IEnumerator NotEnoughMoneyRoutine()
