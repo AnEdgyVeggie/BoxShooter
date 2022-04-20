@@ -7,20 +7,21 @@ public class Player : MonoBehaviour
     // WEAPON AND AMMUNITION VARIABLES
     [Header("Weapon Stats")]
     int _currentClip, _reserveAmmo, _fullClip;
+    [SerializeField]
     float _reloadTime, _damage, _travelTime;
-    bool _isReloading = false, _canfire = true;
+    [SerializeField]
+    bool _isReloading = false, _canfire = true, _isRPG = false;
 
     // SCORE AND OBJECTIVE VARIABLES
     [Header("Score and Objective Variables")]
     int _score = 0, _health = 150, _maxHealth = 150;
-    [SerializeField]
     int _armor = 0, _armorTier = 0, _maxArmor = 50; 
     float _healTime = 7.5f;
 
 
     [Header("Prefabs")]
     [SerializeField]
-    GameObject _bulletPrefab;
+    GameObject _bulletPrefab, _rocketPrefab;
     [SerializeField]
     GameObject _laser;
     [SerializeField]
@@ -80,6 +81,19 @@ public class Player : MonoBehaviour
                 _laser.gameObject.SetActive(true);
             }
         }
+
+        if (_weaponInventory[0].name == "RPG")
+        {
+            _laser.gameObject.SetActive(false);
+            RocketLauncher rpg = _weaponInventory[0] as RocketLauncher;
+            rpg.TurnOnLaser();
+            _isRPG = true;
+        }
+        else
+        {
+            _laser.gameObject.SetActive(true);
+            _isRPG = false;
+        }
     }
 
     /// WEAPON METHODS
@@ -93,8 +107,16 @@ public class Player : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0) && _isReloading == false && _canfire == true)
         {
-            Instantiate(_bulletPrefab, new Vector3(weaponPosition.x, weaponPosition.y, weaponPosition.z), Quaternion.Euler(0, playerRotation.y + 90, 90));
-            _audio.Play();
+            if (_isRPG == false)
+            {
+                Instantiate(_bulletPrefab, new Vector3(weaponPosition.x, weaponPosition.y, weaponPosition.z), Quaternion.Euler(0, playerRotation.y + 90, 90));
+                _audio.Play();
+            }
+            else
+            {
+                Instantiate(_rocketPrefab, new Vector3(weaponPosition.x, weaponPosition.y, weaponPosition.z), Quaternion.Euler(0, playerRotation.y + 90, 90));
+            }
+
 
             _currentClip--;
             _uiManager.UpdateAmmo(_currentClip, _fullClip);
@@ -216,7 +238,7 @@ public class Player : MonoBehaviour
     }
 
     public float GetDamage() { return _damage; }
-    public float GetTravelTime() { return _travelTime; }
+    public float GetTravelTime() {   return _travelTime; }
 
 
     /// OBJECTIVE METHODS

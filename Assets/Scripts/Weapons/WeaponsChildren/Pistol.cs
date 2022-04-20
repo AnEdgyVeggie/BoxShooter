@@ -28,10 +28,7 @@ public class Pistol : Weapons
 
     public override void RefillAmmo()
     {
-        Debug.LogWarning("Ammo Reload Pistol");
-        _fullClip = 16;
-        _currentClip = _fullClip;
-        _reserveAmmo = _fullClip * 5;
+        Init();
     }
 
     public override void EquipPlayer(Player player)
@@ -46,7 +43,6 @@ public class Pistol : Weapons
     public void SetOnStatus(bool ground)
     {
         _weaponplatter.gameObject.SetActive(ground);
-        Debug.Log(_weaponplatter.name + "Should be off");
     }
 
 }

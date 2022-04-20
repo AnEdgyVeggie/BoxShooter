@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7121620006064467747
 Transform:
   m_ObjectHideFlags: 0
@@ -44,9 +44,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _uiManager: {fileID: 0}
-  _fullClip: 50
-  _currentClip: 50
-  _reserveAmmo: 200
+  _fullClip: 0
+  _currentClip: 0
+  _reserveAmmo: 0
   _reloadTime: 0
   _travelTime: 0
   _damage: 0

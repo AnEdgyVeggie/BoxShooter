@@ -59,7 +59,6 @@ public class Weapons : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            Debug.Log(this.name + "Collide Exit");
             _uiManager.PickUpWeaponText(false);
         }
     }

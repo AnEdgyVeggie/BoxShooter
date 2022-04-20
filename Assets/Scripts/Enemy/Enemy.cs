@@ -67,16 +67,17 @@ public class Enemy : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-        if (other.tag == "Bullet")
+        if (othersd.tag == "Bullet")
         {
             Bullet bullet = other.GetComponent<Bullet>();
             bullet.SetSpeed(0);
-            TakeDamage(
-                _player.
-                GetDamage()
-                );
-
+            TakeDamage(_player.GetDamage());
             Destroy(bullet.gameObject);
+        }
+        if (other.tag == "Rocket")
+        {
+            Rocket rocket = other.GetComponent<Rocket>();
+            TakeDamage(_player.GetDamage());
         }
     }
 }
