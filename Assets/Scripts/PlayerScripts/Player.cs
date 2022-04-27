@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Player : MonoBehaviour
 {
@@ -33,11 +34,13 @@ public class Player : MonoBehaviour
     UIManager _uiManager;
     PlayerAnimation _playAnim;
     AudioSource _audio;
+    [SerializeField]
+    protected NavMeshAgent _navMesh;
+
 
     // GAME MANAGER VARIABLES
     bool _paused = false;
 
-    // Start is called before the first frame update
     void Start()
     {
         _player = GetComponent<Player>();
@@ -293,12 +296,11 @@ public class Player : MonoBehaviour
     }
     public int GetScore() { return _score; }
 
-
-
     public void SetPaused(bool pauseGame)
     {
         _paused = pauseGame;
     }
+    public bool GetPaused() { return _paused; }
     public void HideCursor()
     {
         Cursor.visible = false;

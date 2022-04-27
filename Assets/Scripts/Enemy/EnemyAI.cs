@@ -1,9 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour
 {
+    [Header("AI Navigation")]
+    [SerializeField]
+    protected NavMeshAgent _navMesh;
+    [SerializeField]
+    protected float _aggressionRange, _distanceToTarget, _attackRange;
+
+
+
     protected float _speed = 3, _rotateSpeed = 5;
     protected Player _player;
     [SerializeField]
@@ -27,43 +36,39 @@ public class EnemyAI : MonoBehaviour
     // Update is called once per frame
     public virtual void Update()
     {
-        MoveEnemy();
-
+        FindDistanceToTarget();
+        LookRotation();
     }
 
-    void MoveEnemy()
+    private void FindDistanceToTarget()
     {
-        if (!_atEnviroment)
-        {
-        transform.position = Vector3.MoveTowards(transform.position, _player.transform.position, _speed * Time.deltaTime);
-        }
+        this._distanceToTarget = Vector3.Distance(this.transform.position, this._player.transform.position);
 
+        if (_distanceToTarget > _navMesh.stoppingDistance)
+        {
+            _navMesh.destination = _player.transform.position;
+        }
+        else
+        {
+            Attack();
+        }
     }
-    void MoveEnemyFromEnviroment(Vector3 enviromentPosition)
+
+    private void LookRotation()
     {
-        Debug.LogWarning(this.name + "is Moving from enviroment");
+        Vector3 targetDirection = _player.transform.position - transform.position;
 
-        float velocity = _speed * Time.deltaTime;
+        float singleStep = 1 * Time.deltaTime;
 
-        if (_atEnviroment)
-        {
-            if (enviromentPosition.x < this.transform.position.x)
-            {
-                transform.Translate(Vector3.right * velocity);
-            }
-            if (enviromentPosition.x > this.transform.position.x)
-            {
-                transform.Translate(Vector3.left * velocity);
-            }
-            if (enviromentPosition.y < this.transform.position.y)
-            {
-                transform.Translate(Vector3.up * velocity);
-            }
-            if (enviromentPosition.y > this.transform.position.y)
-            {
-                transform.Translate(Vector3.down * velocity);
-            }
-        }
+        Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0.0f);
+
+        transform.rotation = Quaternion.LookRotation(newDirection);
+        transform.rotation = Quaternion.LookRotation(newDirection);
+    }
+
+    public virtual void Attack()
+    {
+
     }
 
     public void DestroyEnemy()
@@ -73,17 +78,6 @@ public class EnemyAI : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.tag == "Enviroment")
-        {
-            Debug.LogWarning(this.name + "Collided with enviroment");
-            _atEnviroment = true;
-            Vector3 envPos = other.transform.position;
-            MoveEnemyFromEnviroment(envPos);
-        }
-        if (other.tag == "Player")
-        {
-            _atPlayer = true;
-        }
     }
 
     private void OnTriggerExit(Collider other)

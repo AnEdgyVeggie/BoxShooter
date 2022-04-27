@@ -36,7 +36,16 @@ public class Enemy : MonoBehaviour
 
     }
 
-    // Update is called once per frame
+    private void Update()
+    {
+        Vector3 targetDirection = _player.transform.position - transform.position;
+        
+        float singleStep = 1 * Time.deltaTime;
+
+        Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0.0f);
+
+        transform.rotation = Quaternion.LookRotation(newDirection);
+    }
 
     public void TakeDamage(float damage)
     {
@@ -67,7 +76,7 @@ public class Enemy : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-        if (othersd.tag == "Bullet")
+        if (other.tag == "Bullet")
         {
             Bullet bullet = other.GetComponent<Bullet>();
             bullet.SetSpeed(0);

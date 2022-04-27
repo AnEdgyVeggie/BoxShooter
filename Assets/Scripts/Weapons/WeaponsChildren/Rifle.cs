@@ -47,6 +47,8 @@ public class Rifle : Weapons
         this.gameObject.layer = LayerMask.NameToLayer("EquippedWeapon");
 
     }
+    
+    
 
     public void SetOnStatus(bool ground)
     {

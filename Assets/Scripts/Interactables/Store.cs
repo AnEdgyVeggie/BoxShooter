@@ -19,11 +19,17 @@ public class Store : MonoBehaviour
     [SerializeField]
     Player _player;
 
+    private void Start()
+    {
+        _player = GameObject.Find("Player").GetComponent<Player>();
+    }
+
     private void OnTriggerStay(Collider other)
     {
         if (other.tag == "Player")
         {
             _uiManager.VisitStoreEnable(true);
+            Player player = other.GetComponent<Player>();
             if (Input.GetKey(KeyCode.E))
             {
                 _uiManager.SetInMenu(true);
@@ -31,21 +37,28 @@ public class Store : MonoBehaviour
                 _storeUI.gameObject.SetActive(true);
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None;
+                player.SetPaused(true);
             }
         }
     }
     private void OnTriggerExit(Collider other)
     {
-            _uiManager.VisitStoreEnable(false);
+        if (other.tag == "Player")
+        {
+        Player player = other.GetComponent<Player>();
+
+        _uiManager.VisitStoreEnable(false);
+        ExitMenu();
+        }
     }
 
     public void ExitMenu()
     {
-        _player.HideCursor();
+       _player.HideCursor();
         _uiManager.gameObject.SetActive(true);
         _uiManager.SetInMenu(false);
         _storeUI.gameObject.SetActive(false);
-
+        _player.SetPaused(false);
     }
 
     public void BuyRifle()
