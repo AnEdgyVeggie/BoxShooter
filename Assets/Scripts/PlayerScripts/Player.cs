@@ -15,9 +15,11 @@ public class Player : MonoBehaviour
 
     // SCORE AND OBJECTIVE VARIABLES
     [Header("Score and Objective Variables")]
-    int _score = 0, _health = 150, _maxHealth = 150;
+    int _score = 0,  _maxHealth = 150;
     int _armor = 0, _armorTier = 0, _maxArmor = 50; 
     float _healTime = 7.5f;
+    [SerializeField]
+    int _health = 150;
 
 
     [Header("Prefabs")]
@@ -53,7 +55,9 @@ public class Player : MonoBehaviour
         HideCursor();
 
         WeaponStatsGetters();
-
+       
+        _uiManager.DisplayArmor(_armor);
+        _uiManager.DisplayHealth(_health);
     }
 
     // Update is called once per frame
@@ -248,9 +252,17 @@ public class Player : MonoBehaviour
     /// Score, health, and methods dealing in
     /// survival or core gameplay
 
-    private void DecreaseHealth(int hitpoints)
+    public void DecreaseHealth(int hitpoints)
     {
+        if (_armor > 0)
+        {
+            hitpoints = hitpoints / 2;
+            _armor -= hitpoints;
+        }
         _health -= hitpoints;
+
+        _uiManager.DisplayArmor(_armor);
+        _uiManager.DisplayHealth(_health);
     }
     private void RegainHealth()
     {
@@ -263,6 +275,7 @@ public class Player : MonoBehaviour
         {
             yield return new WaitForSeconds(0.1f);
             _health++;
+            _uiManager.DisplayHealth(_health);
         }
     }
 
@@ -281,6 +294,7 @@ public class Player : MonoBehaviour
                 _armor = _maxArmor;
             }
         }
+        _uiManager.DisplayArmor(_armor);
     }
 
     public void IncreaseScore(int points)

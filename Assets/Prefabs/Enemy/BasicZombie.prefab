@@ -109,6 +109,7 @@ GameObject:
   - component: {fileID: 2678507704253108717}
   - component: {fileID: 228258304309624326}
   - component: {fileID: 8266957627523561320}
+  - component: {fileID: 943231637269796639}
   m_Layer: 11
   m_Name: BasicZombieBody
   m_TagString: Enemy
@@ -226,6 +227,19 @@ MonoBehaviour:
   _droppable:
   - {fileID: -7083607267863239222, guid: 9268ce37d37db1446817ad5093739c2c, type: 3}
   - {fileID: -6412763488734895156, guid: b4ca41e17ff52f3479a322a58002798a, type: 3}
+--- !u!65 &943231637269796639
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4686504593259315829}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0000006, y: 2, z: 1.0000007}
+  m_Center: {x: 0.00000005960467, y: 0, z: -0.00000008940701}
 --- !u!1 &5406222370373027512
 GameObject:
   m_ObjectHideFlags: 0
@@ -330,8 +344,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7578824363796193755}
-  - component: {fileID: 7578824363796193748}
-  - component: {fileID: 7578824363796193749}
   - component: {fileID: 6715370746993644098}
   - component: {fileID: 1541953547765476899}
   - component: {fileID: 2042079793734756780}
@@ -350,63 +362,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7578824363796193744}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5647934873181149179}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &7578824363796193748
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7578824363796193744}
-  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &7578824363796193749
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7578824363796193744}
-  m_Enabled: 0
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: b1333e0881048a84899e9a33d4e6cd6f, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!114 &6715370746993644098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -425,6 +388,7 @@ MonoBehaviour:
   _attackRange: 2
   _atEnviroment: 0
   _atPlayer: 0
+  _isAttacking: 0
 --- !u!65 &1541953547765476899
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -436,8 +400,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.142496, y: 2, z: 2.2191763}
-  m_Center: {x: 0.036415637, y: 0, z: -0.047091722}
+  m_Size: {x: 1.0354561, y: 0.4180877, z: 1}
+  m_Center: {x: -0.2823248, y: 0, z: 0.027765572}
 --- !u!195 &2042079793734756780
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -452,7 +416,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 4
+  m_StoppingDistance: 2
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -468,7 +432,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7578824363796193744}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 74a0af33e26d2f045868b0fa130989bf, type: 2}
   m_CullingMode: 0

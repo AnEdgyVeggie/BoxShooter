@@ -16,7 +16,7 @@ public class EnemyAI : MonoBehaviour
     protected float _speed = 3, _rotateSpeed = 5;
     protected Player _player;
     [SerializeField]
-    protected bool _atEnviroment = false, _atPlayer = false;
+    protected bool _atEnviroment = false, _atPlayer = false, _isAttacking = false;
 
     // Start is called before the first frame update
     void Start()
@@ -76,17 +76,5 @@ public class EnemyAI : MonoBehaviour
         Destroy(this.gameObject);
     }
 
-    private void OnTriggerStay(Collider other)
-    {
-    }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "Enviroment")
-        {
-            Debug.LogWarning(this.name + "exited enviroment");
-            _atEnviroment = false;
-
-        }
-    }
 }

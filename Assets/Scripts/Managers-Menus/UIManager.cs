@@ -7,7 +7,7 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField]
     Text _ammoCounter, _ammoCounterBack, _maxAmmoCounter, _maxAmmoCounterBack, _pickupWeaponText, _paused,
-        _weaponType, _weaponTypeBack, _scoreDisplay, _scoreDisplayBack, _round, _roundBack, _visitStore;
+        _weaponType, _weaponTypeBack, _scoreDisplay, _scoreDisplayBack, _round, _roundBack, _visitStore, _displayHealth, _displayArmor;
     [SerializeField]
     Store _storeUI;
 
@@ -61,6 +61,14 @@ public class UIManager : MonoBehaviour
     public void VisitStoreEnable(bool isActive)
     {
         _visitStore.gameObject.SetActive(isActive);
+    }
+    public void DisplayHealth(int health)
+    {
+        _displayHealth.text = "Health: " + health;
+    }
+    public void DisplayArmor(int armor)
+    {
+        _displayHealth.text = "Armor: " + armor;
     }
 
     public bool GetInMenu() { return _inMenu; }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     protected float _health = 15;
-    protected int _pointsOnHit, _pointsOnDeath;
+    protected int _pointsOnHit, _pointsOnDeath, _attackDamage;
 
     // DROP LOOT
     [SerializeField]

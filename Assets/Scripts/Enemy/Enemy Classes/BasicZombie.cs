@@ -8,6 +8,9 @@ public class BasicZombie : Enemy
     {
         _pointsOnDeath = 25;
         _pointsOnHit = 5;
+        _attackDamage = 20;
     }
+
+    public int GetAttackDamage() { return _attackDamage; }
 
 }
