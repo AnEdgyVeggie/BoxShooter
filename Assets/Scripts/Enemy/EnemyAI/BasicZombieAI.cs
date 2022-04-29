@@ -42,9 +42,12 @@ public class BasicZombieAI : EnemyAI
     {
         if (other.tag == "Player")
         {
-            Player player = other.GetComponent<Player>();
-            player.DecreaseHealth(_basicZ.GetAttackDamage());
-            Debug.Log("HIT");
+            if (_isAttacking)
+            {
+                Player player = other.GetComponent<Player>();
+                player.DecreaseHealth(_basicZ.GetAttackDamage());
+            }
+           
         }
     }
 }

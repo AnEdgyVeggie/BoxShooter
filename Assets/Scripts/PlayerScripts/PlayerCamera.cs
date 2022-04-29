@@ -23,12 +23,16 @@ public class PlayerCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_player.GetPaused() == false)
+        if (!_player.GetGameOver())
         {
-        float horizontal = Input.GetAxisRaw("Horizontal");
-        float vertical = Input.GetAxisRaw("Vertical");
+            if (_player.GetPaused() == false)
+            {
+            float horizontal = Input.GetAxisRaw("Horizontal");
+            float vertical = Input.GetAxisRaw("Vertical");
 
-        _rigidBody.velocity = new Vector3(horizontal, velocity.y, vertical) * _playerSpeed;
+            _rigidBody.velocity = new Vector3(horizontal, velocity.y, vertical) * _playerSpeed;
+            }
         }
+
     }
 }

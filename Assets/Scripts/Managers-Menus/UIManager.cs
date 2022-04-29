@@ -14,11 +14,14 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     bool _inMenu = false;
 
+    Animator _anim;
+
 
     // Start is called before the first frame update
     void Start()
     {
-
+        _anim = GameObject.Find("GameOverScreen").GetComponent<Animator>();
+       
     }
 
     public void PickUpWeaponText(bool is_active)
@@ -69,6 +72,11 @@ public class UIManager : MonoBehaviour
     public void DisplayArmor(int armor)
     {
         _displayHealth.text = "Armor: " + armor;
+    }
+
+    public void GameOverScreen()
+    {
+        _anim.SetTrigger("GameOver");
     }
 
     public bool GetInMenu() { return _inMenu; }

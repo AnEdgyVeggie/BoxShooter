@@ -109,7 +109,6 @@ GameObject:
   - component: {fileID: 2678507704253108717}
   - component: {fileID: 228258304309624326}
   - component: {fileID: 8266957627523561320}
-  - component: {fileID: 943231637269796639}
   m_Layer: 11
   m_Name: BasicZombieBody
   m_TagString: Enemy
@@ -124,7 +123,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4686504593259315829}
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -132,7 +131,7 @@ Transform:
   - {fileID: 5625642173035148419}
   m_Father: {fileID: 7578824363796193755}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6448788787196408972
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -227,19 +226,6 @@ MonoBehaviour:
   _droppable:
   - {fileID: -7083607267863239222, guid: 9268ce37d37db1446817ad5093739c2c, type: 3}
   - {fileID: -6412763488734895156, guid: b4ca41e17ff52f3479a322a58002798a, type: 3}
---- !u!65 &943231637269796639
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4686504593259315829}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.0000006, y: 2, z: 1.0000007}
-  m_Center: {x: 0.00000005960467, y: 0, z: -0.00000008940701}
 --- !u!1 &5406222370373027512
 GameObject:
   m_ObjectHideFlags: 0
@@ -362,14 +348,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7578824363796193744}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5647934873181149179}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6715370746993644098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -400,8 +386,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.0354561, y: 0.4180877, z: 1}
-  m_Center: {x: -0.2823248, y: 0, z: 0.027765572}
+  m_Size: {x: 0.36006534, y: 0.9019599, z: 0.02956009}
+  m_Center: {x: 0.0056807324, y: -0.049020052, z: 0.25240892}
 --- !u!195 &2042079793734756780
 NavMeshAgent:
   m_ObjectHideFlags: 0

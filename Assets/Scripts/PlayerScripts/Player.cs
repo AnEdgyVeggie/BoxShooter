@@ -11,15 +11,18 @@ public class Player : MonoBehaviour
     [SerializeField]
     float _reloadTime, _damage, _travelTime;
     [SerializeField]
-    bool _isReloading = false, _canfire = true, _isRPG = false;
+    bool _isReloading = false, _canfire = true, _isRPG = false, _damaged = false;
 
     // SCORE AND OBJECTIVE VARIABLES
     [Header("Score and Objective Variables")]
     int _score = 0,  _maxHealth = 150;
-    int _armor = 0, _armorTier = 0, _maxArmor = 50; 
+    int _armor = 0, _armorTier = 0, _maxArmor = 50;
+    [SerializeField]
+    int _damagedCounter = 0; 
     float _healTime = 7.5f;
     [SerializeField]
     int _health = 150;
+    bool _gameOver = false;
 
 
     [Header("Prefabs")]
@@ -63,44 +66,48 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!_paused) {
+        if (!_gameOver)
+        {
+            if (!_paused) {
 
-            if (Input.GetMouseButtonDown(0) && _currentClip > 0)
-            {
-                FireWeapon();
-            }
-            if (Input.GetAxisRaw("Scroll") > 0 || Input.GetAxisRaw("Scroll") < 0)
-            {
-                SwapWeaponInventory();
+                if (Input.GetMouseButtonDown(0) && _currentClip > 0)
+                {
+                    FireWeapon();
+                }
+                if (Input.GetAxisRaw("Scroll") > 0 || Input.GetAxisRaw("Scroll") < 0)
+                {
+                    SwapWeaponInventory();
+                }
+
+                if (Input.GetKeyDown(KeyCode.R))
+                {
+                    ReloadWeapon();
+                }
+
+                if (_weaponInventory[0].name == "Unarmed")
+                {
+                    _laser.gameObject.SetActive(false);
+                }
+                else
+                {
+                    _laser.gameObject.SetActive(true);
+                }
             }
 
-            if (Input.GetKeyDown(KeyCode.R))
-            {
-                ReloadWeapon();
-            }
-
-            if (_weaponInventory[0].name == "Unarmed")
+            if (_weaponInventory[0].name == "RPG")
             {
                 _laser.gameObject.SetActive(false);
+                RocketLauncher rpg = _weaponInventory[0] as RocketLauncher;
+                rpg.TurnOnLaser();
+                _isRPG = true;
             }
             else
             {
                 _laser.gameObject.SetActive(true);
+                _isRPG = false;
             }
         }
 
-        if (_weaponInventory[0].name == "RPG")
-        {
-            _laser.gameObject.SetActive(false);
-            RocketLauncher rpg = _weaponInventory[0] as RocketLauncher;
-            rpg.TurnOnLaser();
-            _isRPG = true;
-        }
-        else
-        {
-            _laser.gameObject.SetActive(true);
-            _isRPG = false;
-        }
     }
 
     /// WEAPON METHODS
@@ -254,6 +261,10 @@ public class Player : MonoBehaviour
 
     public void DecreaseHealth(int hitpoints)
     {
+        _damagedCounter++;
+        _damaged = true;
+        StartCoroutine(SetDamagedRoutine());
+
         if (_armor > 0)
         {
             hitpoints = hitpoints / 2;
@@ -261,16 +272,35 @@ public class Player : MonoBehaviour
         }
         _health -= hitpoints;
 
+        if (_health < 1)
+        {
+            _health = 0;
+            GameOver();
+        }
+
         _uiManager.DisplayArmor(_armor);
         _uiManager.DisplayHealth(_health);
     }
-    private void RegainHealth()
+
+    IEnumerator SetDamagedRoutine()
     {
-        StartCoroutine(RegainHealthRoutine());
+        yield return new WaitForSeconds(_healTime);
+        _damagedCounter--;
+        if (_damagedCounter == 0)
+        {
+            _damaged = false;
+            RegainHealth();
+        }
+    }
+    private void RegainHealth()
+    { 
+        if (!_damaged)
+        {
+            StartCoroutine(RegainHealthRoutine());
+        }
     }
     IEnumerator RegainHealthRoutine()
     {
-        yield return new WaitForSeconds(_healTime);
          while (_health < _maxHealth)
         {
             yield return new WaitForSeconds(0.1f);
@@ -309,6 +339,19 @@ public class Player : MonoBehaviour
 
     }
     public int GetScore() { return _score; }
+
+    public void GameOver()
+    {
+        _uiManager.GameOverScreen();
+        _gameOver = true;
+    }
+    public bool GetGameOver()
+    {
+        return _gameOver;
+    }
+
+    /// Additional functions
+
 
     public void SetPaused(bool pauseGame)
     {

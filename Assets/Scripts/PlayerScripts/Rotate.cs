@@ -7,9 +7,19 @@ public class Rotate : MonoBehaviour
     float _mouseSensitivity = 1;
     bool _paused;
 
+    Player _player;
+
+    private void Start()
+    {
+        _player = GetComponent<Player>();
+    }
+
     void Update()
     {
-        if (!_paused)
+
+        if (!_player.GetGameOver())
+        {
+                    if (!_paused)
         {
             float _mouseX = Input.GetAxis("Mouse X");
 
@@ -18,6 +28,8 @@ public class Rotate : MonoBehaviour
             transform.localEulerAngles = newRotation;
         }
     }
+        }
+
 
     public void SetPaused(bool pauseGame)
     {
