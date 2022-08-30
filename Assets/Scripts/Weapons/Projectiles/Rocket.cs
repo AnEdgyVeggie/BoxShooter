@@ -6,6 +6,7 @@ public class Rocket : Bullet
 {
     Animator _anim;
     AudioSource _audio;
+    bool _hasExploded = false;
 
     public override void Init()
     {
@@ -29,10 +30,18 @@ public class Rocket : Bullet
     {
         if (other.tag == "Enviroment" || other.tag == "Enemy")
         {
-            _anim.SetTrigger("Explode");
-            _audio.Play();
             _bulletSpeed = 0;
             Destroy(this.gameObject, 2f);
+        }
+    }
+
+    private void HandleExplosion()
+    {
+        if (!_hasExploded)
+        {
+            _anim.SetTrigger("Explode");
+            _audio.Play();
+            _hasExploded = true;
         }
     }
 }

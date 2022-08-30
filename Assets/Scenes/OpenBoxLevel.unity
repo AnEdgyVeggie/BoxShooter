@@ -1188,7 +1188,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 1
-  m_FollowOffset: {x: 0, y: 17.5, z: -18.01}
+  m_FollowOffset: {x: 0, y: 18.97, z: -20.7}
   m_XDamping: 2
   m_YDamping: 2
   m_ZDamping: 2
@@ -2974,8 +2974,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.38268343, y: -0.00000007300148, z: 0.00000017630738, w: 0.92387956}
-  m_LocalPosition: {x: 0, y: 17.5, z: -18.01}
+  m_LocalRotation: {x: 0.38268343, y: -0.000000073128696, z: 0.00000017661482, w: 0.92387956}
+  m_LocalPosition: {x: 0, y: 18.97, z: -20.7}
   m_LocalScale: {x: 1, y: 0, z: 0}
   m_Children:
   - {fileID: 941469511}
@@ -3837,6 +3837,7 @@ MonoBehaviour:
   _currentEnemiesAlive: 0
   round: 1
   _spawning: 0
+  _roundUpdate: 0
   enemyTypes:
   - {fileID: 6715370746993644098, guid: f3b49920f2ffa42488f6c6164ecc21ed, type: 3}
   - {fileID: -8702180056799798847, guid: a1875666a2203b2488eaee61d4b82f46, type: 3}
@@ -6471,6 +6472,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3714090123744535743, guid: bbc2be28c78274041afc73afc26b6195, type: 3}
     - target: {fileID: 5935995523528511727, guid: 355ff04aaf2f1a44784b86c770ceb31c, type: 3}
+      propertyPath: _fireRate
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5935995523528511727, guid: 355ff04aaf2f1a44784b86c770ceb31c, type: 3}
       propertyPath: _startingPistol
       value: 
       objectReference: {fileID: 3714090123744535743, guid: bbc2be28c78274041afc73afc26b6195, type: 3}
@@ -6482,7 +6487,8 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5935995522687471451, guid: 355ff04aaf2f1a44784b86c770ceb31c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 355ff04aaf2f1a44784b86c770ceb31c, type: 3}
 --- !u!1001 &8240552864974989651
 PrefabInstance:

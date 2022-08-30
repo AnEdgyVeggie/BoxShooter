@@ -15,12 +15,12 @@ public class Weapons : MonoBehaviour
     [SerializeField]
     protected int _reserveAmmo = 150;  //ammo remaining to be used
     [SerializeField]
-    protected float _reloadTime = 1.5f, _travelTime = 2.5f;
+    protected float _reloadTime = 1.5f, _travelTime = 2.5f, _fireRate = 0.2f;
     [SerializeField]
     protected float _damage = 2;
     [SerializeField]
     protected bool _onGround = false, _onPlayer = false;
-
+    
 
     [SerializeField]
     protected GameObject _weaponplatter;
@@ -53,7 +53,6 @@ public class Weapons : MonoBehaviour
             }
         }
     }
-
 
     protected void OnTriggerExit(Collider other)
     {
@@ -105,5 +104,6 @@ public class Weapons : MonoBehaviour
     public int GetFullClip() { return _fullClip; }
     public int GetCurrentClip() { return _currentClip; }
     public int GetReserveAmmo() { return _reserveAmmo; }
+    public float GetFireRate() { return _fireRate; }
 
 }

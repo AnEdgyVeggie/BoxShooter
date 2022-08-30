@@ -44,11 +44,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _uiManager: {fileID: 0}
-  _fullClip: 0
-  _currentClip: 0
-  _reserveAmmo: 0
+  _fullClip: 50
+  _currentClip: 50
+  _reserveAmmo: 200
   _reloadTime: 0
   _travelTime: 0
+  _fireRate: 0.2
   _damage: 0
   _onGround: 0
   _onPlayer: 0

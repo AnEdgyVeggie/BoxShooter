@@ -64,7 +64,6 @@ public class Enemy : MonoBehaviour
                     Instantiate(_droppable[Random.Range(0, _droppable.Length)], transform.position, Quaternion.identity);
                 }
                 _AI.DestroyEnemy();
-                _enSpawn.CalculateEnemiesKilled();
             }
         }
     }

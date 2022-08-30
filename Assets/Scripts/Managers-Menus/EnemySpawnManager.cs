@@ -6,9 +6,9 @@ public class EnemySpawnManager : MonoBehaviour
 {
     float _spawnRate = 1.75f;
     [SerializeField]
-    int _maxRoundEnemies, _maxCurrentEnemies = 30, _roundEnemiesSpawned = 0, _enemiesKilled = 0, _currentEnemiesAlive = 0, round = 1;
+    int _maxRoundEnemies, _maxCurrentEnemies = 30, _roundEnemiesSpawned = 0,  _currentEnemiesAlive = 0, round = 1;
     [SerializeField]
-    bool _spawning = false;
+    bool _spawning = false, _roundUpdate = false;
 
     [SerializeField]
     EnemyAI[] enemyTypes;
@@ -39,8 +39,9 @@ public class EnemySpawnManager : MonoBehaviour
             StartCoroutine(EnemySpawnRoutine());
             StartCoroutine(CheckEnemySpawnRoutine());
 
-            if (_enemiesKilled >= _maxRoundEnemies - 1)
+            if (CheckForRoundUpdate() == true)
             {
+                _roundUpdate = false;
                 StartCoroutine(NextLevelSetUp());
 
             }
@@ -69,7 +70,6 @@ public class EnemySpawnManager : MonoBehaviour
                 enemies.Add(enemySpawn);
                 enemySpawn.transform.parent = this.transform.Find("Enemies"); 
             }
-            _currentEnemiesAlive++;
             _roundEnemiesSpawned++;
             StartCoroutine(EnemySpawnRoutine());
         }
@@ -81,7 +81,8 @@ public class EnemySpawnManager : MonoBehaviour
 
     IEnumerator NextLevelSetUp()
     {
-        _enemiesKilled = 0;
+        _roundUpdate = false;
+        _roundEnemiesSpawned = 0;
         enemies.Clear();
         yield return new WaitForSeconds(3.25f);
         _anim.SetTrigger("RoundChange");
@@ -89,8 +90,7 @@ public class EnemySpawnManager : MonoBehaviour
         round++;
         _uiManager.DisplayRound(round);
         yield return new WaitForSeconds(6.5f);
-        _currentEnemiesAlive = 0;
-        _roundEnemiesSpawned = 0;
+
         UpdateMaxRoundEnemies();
 
         if (round % 5 == 0)
@@ -98,35 +98,35 @@ public class EnemySpawnManager : MonoBehaviour
             _maxCurrentEnemies++;
         }
     }
-
-    public void DecrementEnemiesAlive()
+    bool CheckForRoundUpdate()
     {
-        _currentEnemiesAlive--;
-        _enemiesKilled++;
+        if (_roundEnemiesSpawned > 5 && CheckEnemiesDead())
+        {
+            Debug.Log("Updated CheckForRoundUpdate TRUE");
+            return _roundUpdate = true;
+        }
+        Debug.Log("CheckForRoundUpdate FALSE");
+        return _roundUpdate = false;
     }
 
     void UpdateMaxRoundEnemies()
     {
-        _maxRoundEnemies = ((((round + (10 + round)) * 100) / 40) + round);
+        _maxRoundEnemies = ((round * 3) * 100 / 40) + round;
+      
+       //used for short round testing :  
+       // _maxRoundEnemies = ((((round + (1 + round)) * 100) / 40) + round);
     }
 
-    public void CalculateEnemiesKilled()
+
+    bool CheckEnemiesDead()
     {
-        int killed = 0;
         for (int i = 0; i < enemies.Count; i++)
         {
-            if (enemies[i] == null)
+            if (enemies[i] != null)
             {
-                killed++;
+                return false;
             }
         }
-        if (killed > _enemiesKilled)
-        {
-            UpdateEnemiesKilled(killed);
-        }
-    }
-    void UpdateEnemiesKilled(int killed)
-    {
-        _enemiesKilled = killed;
+        return true;
     }
 }

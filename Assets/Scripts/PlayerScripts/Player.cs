@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     int _currentClip, _reserveAmmo, _fullClip;
     [SerializeField]
-    float _reloadTime, _damage, _travelTime;
+    float _reloadTime, _damage, _travelTime, _fireRate, _nextShot;
     [SerializeField]
     bool _isReloading = false, _canfire = true, _isRPG = false, _damaged = false;
 
@@ -66,7 +66,9 @@ public class Player : MonoBehaviour
         startingPistol.EquipPlayer(_player);
 
         WeaponStatsGetters();
-       
+
+        _nextShot = _fireRate;
+
         _uiManager.DisplayArmor(_armor);
         _uiManager.DisplayHealth(_health);
     }
@@ -127,20 +129,28 @@ public class Player : MonoBehaviour
         Vector3 weaponPosition = _weaponInventory[0].transform.position;
         Vector3 playerRotation = _player.transform.eulerAngles;
 
+
+
+        if (_nextShot > Time.time)
+        {
+            return;
+        }
+        _nextShot = _fireRate + Time.time;
+
         if (Input.GetMouseButtonDown(0) && _isReloading == false && _canfire == true)
         {
             if (_weaponInventory[0].name == "Unarmed")
             {
                 return;
             }
-            if (_isRPG == false)
+            if (_isRPG == true)
             {
-                Instantiate(_bulletPrefab, new Vector3(weaponPosition.x, weaponPosition.y, weaponPosition.z), Quaternion.Euler(0, playerRotation.y + 90, 90));
-                _audio.Play();
+                Instantiate(_rocketPrefab, new Vector3(weaponPosition.x, weaponPosition.y, weaponPosition.z), Quaternion.Euler(0, playerRotation.y + 90, 90));
             }
             else
             {
-                Instantiate(_rocketPrefab, new Vector3(weaponPosition.x, weaponPosition.y, weaponPosition.z), Quaternion.Euler(0, playerRotation.y + 90, 90));
+              Instantiate(_bulletPrefab, new Vector3(weaponPosition.x, weaponPosition.y, weaponPosition.z), Quaternion.Euler(0, playerRotation.y + 90, 90));
+                _audio.Play();
             }
 
 
@@ -274,12 +284,14 @@ public class Player : MonoBehaviour
     /// WEAPON STAT GETTERS
     private void WeaponStatsGetters()
     {
-        this._damage = _weaponInventory[0].GetDamage();
-        this._reloadTime = _weaponInventory[0].GetReloadTime();
-        this._fullClip = _weaponInventory[0].GetFullClip();
-        this._travelTime = _weaponInventory[0].GetTravelTime();
-        this._currentClip = _weaponInventory[0].GetCurrentClip();
-        this._reserveAmmo = _weaponInventory[0].GetReserveAmmo();
+        _damage = _weaponInventory[0].GetDamage();
+        _reloadTime = _weaponInventory[0].GetReloadTime();
+        _fullClip = _weaponInventory[0].GetFullClip();
+        _travelTime = _weaponInventory[0].GetTravelTime();
+        _currentClip = _weaponInventory[0].GetCurrentClip();
+        _reserveAmmo = _weaponInventory[0].GetReserveAmmo();
+        _fireRate = _weaponInventory[0].GetFireRate();
+
         _canfire = (_reserveAmmo > 0) ?  true : false;
 
         if (_weaponInventory[0].name == "Unarmed" || _weaponInventory[0].name == "Pistol")

@@ -15,6 +15,7 @@ public class Rifle : Weapons
         _reloadTime = 2.5f;
         _damage = 17.5f;
         _travelTime = 1.3f;
+        _fireRate = 0.3f;
 
         anim = GetComponent<Animator>();
 

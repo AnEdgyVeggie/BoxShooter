@@ -14,6 +14,7 @@ public class Pistol : Weapons
         _reloadTime = 1f;
         _damage = 10;
         _travelTime = 0.9f;
+        _fireRate = 0.2f;
 
         anim = GetComponent<Animator>();
     }
