@@ -143,20 +143,23 @@ public class Player : MonoBehaviour
             {
                 return;
             }
+            Instantiate(_weaponInventory[0].GetAmmoType(), 
+                new Vector3(weaponPosition.x, weaponPosition.y, weaponPosition.z), Quaternion.Euler(0, playerRotation.y +90, 90));
+            
+            /*
             if (_isRPG == true)
             {
-                Instantiate(_rocketPrefab, new Vector3(weaponPosition.x, weaponPosition.y, weaponPosition.z), Quaternion.Euler(0, playerRotation.y + 90, 90));
+                Instantiate(_rocketPrefab, 
+            new Vector3(weaponPosition.x, weaponPosition.y, weaponPosition.z), Quaternion.Euler(0, playerRotation.y + 90, 90));
             }
             else
             {
               Instantiate(_bulletPrefab, new Vector3(weaponPosition.x, weaponPosition.y, weaponPosition.z), Quaternion.Euler(0, playerRotation.y + 90, 90));
                 _audio.Play();
             }
-
-
+            */
             _currentClip--;
             _uiManager.UpdateAmmo(_currentClip, _fullClip);
-
             if (_currentClip == 0)
             {
                 _canfire = false;
@@ -167,7 +170,6 @@ public class Player : MonoBehaviour
             StartCoroutine(WeaponReloadRoutine());
         }
     }
-
     void ReloadWeapon()
     {
         if (_weaponInventory[0].name == "Unarmed")
@@ -185,7 +187,6 @@ public class Player : MonoBehaviour
             return;
         }
     }
-
     IEnumerator WeaponReloadRoutine()
     {
         if (_weaponInventory[0].name == "Pistol")
@@ -217,7 +218,6 @@ public class Player : MonoBehaviour
         {
             _uiManager.UpdateReserveAmmo(_reserveAmmo.ToString());
         }
-
     }
 
     public void SwapWeaponWithNew(Weapons swapped)
@@ -234,8 +234,7 @@ public class Player : MonoBehaviour
         else
         {
             _weaponInventory[0].gameObject.SetActive(false);
-            _weaponInventory[0] = swapped;
-            
+            _weaponInventory[0] = swapped;  
         }
         WeaponStatsGetters();
         HideSecondWeapon();
@@ -250,8 +249,6 @@ public class Player : MonoBehaviour
         HideSecondWeapon();
         WeaponStatsGetters();
     }
-
-
     private void HideSecondWeapon()
     {
         if (_weaponInventory[1])
@@ -302,15 +299,12 @@ public class Player : MonoBehaviour
         {
             _uiManager.UpdateReserveAmmo(_reserveAmmo.ToString());
         }
-
         _uiManager.UpdateAmmo(_currentClip, _fullClip);
-
         _uiManager.UpdateWeaponType(_weaponInventory[0].name);
     }
 
     public float GetDamage() { return _damage; }
     public float GetTravelTime() {   return _travelTime; }
-
 
     /// OBJECTIVE METHODS
     /// Score, health, and methods dealing in
@@ -334,7 +328,6 @@ public class Player : MonoBehaviour
             _health = 0;
             GameOver();
         }
-
         _uiManager.DisplayArmor(_armor);
         _uiManager.DisplayHealth(_health);
     }
@@ -393,7 +386,6 @@ public class Player : MonoBehaviour
     {
         _score -= points;
         _uiManager.DisplayScore(_score);
-
     }
     public int GetScore() { return _score; }
 

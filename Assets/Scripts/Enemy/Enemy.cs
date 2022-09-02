@@ -90,5 +90,9 @@ public class Enemy : MonoBehaviour
             Rocket rocket = other.GetComponent<Rocket>();
             TakeDamage(_player.GetDamage());
         }
+        if (other.tag == "SniperBullet")
+        {
+            TakeDamage(_player.GetDamage());
+        }
     }
 }

@@ -116,9 +116,11 @@ MonoBehaviour:
   _reserveAmmo: 16
   _reloadTime: 1
   _travelTime: 0.9
+  _fireRate: 0.2
   _damage: 10
   _onGround: 0
   _onPlayer: 0
+  _ammunition: {fileID: 57123558794507606, guid: 5201dad48b01abe42a9240133203698e, type: 3}
   _weaponplatter: {fileID: 0}
 --- !u!95 &1582981298116062505
 Animator:

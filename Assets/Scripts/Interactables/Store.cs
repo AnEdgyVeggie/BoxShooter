@@ -69,7 +69,6 @@ public class Store : MonoBehaviour
 
             newRifle = Instantiate(_riflePurchasable);
             newRifle.name = "Rifle";
-            newRifle.SetOnStatus(false);
             newRifle.EquipPlayer(_player);
             _player.DecreaseScore(2000);
         }
@@ -90,7 +89,6 @@ public class Store : MonoBehaviour
         {
             newPistol = Instantiate(_pistolPurchasable);
             newPistol.name = "Pistol";
-            newPistol.SetOnStatus(false);
             newPistol.EquipPlayer(_player);
             _player.DecreaseScore(800);
         }

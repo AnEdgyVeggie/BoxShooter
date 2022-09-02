@@ -37,11 +37,6 @@ public class RocketLauncher : Weapons
         this.gameObject.layer = LayerMask.NameToLayer("EquippedWeapon");
     }
 
-    public void SetOnStatus(bool ground)
-    {
-        _weaponplatter.gameObject.SetActive(ground);
-    }
-
     public void TurnOnLaser()
     {
         _laserPrefab.SetActive(true);

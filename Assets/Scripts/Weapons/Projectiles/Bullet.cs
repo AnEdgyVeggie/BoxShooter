@@ -33,7 +33,8 @@ public class Bullet : MonoBehaviour
 
     private void BulletTrajectory()
     {
-        _rigidBody.transform.Translate(Vector3.up * _bulletSpeed * Time.deltaTime);
+        _rigidBody.transform.Translate
+            (Vector3.up * _bulletSpeed * Time.deltaTime);
     }
 
     private void OnTriggerEnter(Collider other)

@@ -26,7 +26,6 @@ public class EnemySpawnManager : MonoBehaviour
     {
         _uiManager = GameObject.Find("UIManager").GetComponent<UIManager>();
         _anim = GameObject.Find("Round").GetComponent<Animator>();
-
         UpdateMaxRoundEnemies();
         StartCoroutine(CheckEnemySpawnRoutine());
     }
@@ -38,12 +37,10 @@ public class EnemySpawnManager : MonoBehaviour
         {
             StartCoroutine(EnemySpawnRoutine());
             StartCoroutine(CheckEnemySpawnRoutine());
-
             if (CheckForRoundUpdate() == true)
             {
                 _roundUpdate = false;
                 StartCoroutine(NextLevelSetUp());
-
             }
         }
         else
@@ -90,9 +87,7 @@ public class EnemySpawnManager : MonoBehaviour
         round++;
         _uiManager.DisplayRound(round);
         yield return new WaitForSeconds(6.5f);
-
         UpdateMaxRoundEnemies();
-
         if (round % 5 == 0)
         {
             _maxCurrentEnemies++;
@@ -102,21 +97,19 @@ public class EnemySpawnManager : MonoBehaviour
     {
         if (_roundEnemiesSpawned > 5 && CheckEnemiesDead())
         {
-            Debug.Log("Updated CheckForRoundUpdate TRUE");
+           // Debug.Log("Updated CheckForRoundUpdate TRUE");
             return _roundUpdate = true;
         }
-        Debug.Log("CheckForRoundUpdate FALSE");
+       // Debug.Log("CheckForRoundUpdate FALSE");
         return _roundUpdate = false;
     }
 
     void UpdateMaxRoundEnemies()
     {
         _maxRoundEnemies = ((round * 3) * 100 / 40) + round;
-      
        //used for short round testing :  
        // _maxRoundEnemies = ((((round + (1 + round)) * 100) / 40) + round);
     }
-
 
     bool CheckEnemiesDead()
     {

@@ -22,10 +22,7 @@ public class Rifle : Weapons
     }
     private void Update()
     {
-        if (_weaponplatter.gameObject == false)
-        {
-            anim.SetBool("InInventory", true);
-        }
+
     }
 
     public override void RefillAmmo()
@@ -48,11 +45,5 @@ public class Rifle : Weapons
         this.gameObject.layer = LayerMask.NameToLayer("EquippedWeapon");
 
     }
-    
-    
 
-    public void SetOnStatus(bool ground)
-    {
-        _weaponplatter.gameObject.SetActive(ground);
-    }
 }

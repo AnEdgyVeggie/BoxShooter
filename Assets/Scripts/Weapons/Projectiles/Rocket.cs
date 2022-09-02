@@ -30,7 +30,8 @@ public class Rocket : Bullet
     {
         if (other.tag == "Enviroment" || other.tag == "Enemy")
         {
-            _bulletSpeed = 0;
+            _bulletSpeed = 0.2f;
+            HandleExplosion();
             Destroy(this.gameObject, 2f);
         }
     }

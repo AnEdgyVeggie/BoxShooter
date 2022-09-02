@@ -20,10 +20,12 @@ public class Weapons : MonoBehaviour
     protected float _damage = 2;
     [SerializeField]
     protected bool _onGround = false, _onPlayer = false;
+    [SerializeField]
+    private Bullet _ammunition;
     
 
     [SerializeField]
-    protected GameObject _weaponplatter;
+   // protected GameObject _weaponplatter;
     protected Player _player;
 
     void Start()
@@ -45,7 +47,6 @@ public class Weapons : MonoBehaviour
         {
             Player player = other.GetComponentInChildren<Player>();
             _uiManager.PickUpWeaponText(true);
-            Debug.Log(this.name + "Collide");
             if (Input.GetKeyDown(KeyCode.E))
             {
                 EquipPlayer(player);
@@ -79,6 +80,7 @@ public class Weapons : MonoBehaviour
         _uiManager.PickUpWeaponText(false);
     }
 
+    /*
     private void SetWeaponPlatter()
     {
         if (_onGround == true)
@@ -90,6 +92,7 @@ public class Weapons : MonoBehaviour
             _weaponplatter.gameObject.SetActive(false);
         }
     }
+    */
 
     // SETTERS AND GETTERS
 
@@ -105,5 +108,6 @@ public class Weapons : MonoBehaviour
     public int GetCurrentClip() { return _currentClip; }
     public int GetReserveAmmo() { return _reserveAmmo; }
     public float GetFireRate() { return _fireRate; }
+    public Bullet GetAmmoType() { return _ammunition; }
 
 }
