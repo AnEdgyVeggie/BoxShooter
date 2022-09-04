@@ -52,7 +52,6 @@ public class Bullet : MonoBehaviour
 
     public virtual void OnTriggerEnter(Collider other)
     {
-        Debug.Log(mdamage + " on collision");
         if (other.tag == "Enviroment")
         {
             Destroy(gameObject);

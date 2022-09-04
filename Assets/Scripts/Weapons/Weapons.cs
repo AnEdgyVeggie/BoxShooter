@@ -33,6 +33,10 @@ public class Weapons : MonoBehaviour
         _player = GameObject.Find("Player").GetComponent<Player>();
 
         _uiManager = GameObject.Find("UIManager").GetComponent<UIManager>();
+        if (_uiManager == null)
+        {
+            Debug.Log("UI MANAGER IS NULL IN " + this);
+        }
 
         Init();
     }
@@ -48,7 +52,8 @@ public class Weapons : MonoBehaviour
         Instantiate(bullet, transform.position, Quaternion.Euler(0, _player.GetPlayerRotation().y + 90, 90));
         bullet.GetComponent<Bullet>().mdamage = _damage;
         _currentClip--;
-        _uiManager.UpdateAmmo(_currentClip, _fullClip);
+        _uiManager.
+            UpdateAmmo(_currentClip, _fullClip);
     }
 
     protected void OnTriggerStay(Collider other)

@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Rifle : Weapons
 {
-
-
     Animator anim;
     public override void Init()
     {
@@ -17,8 +15,6 @@ public class Rifle : Weapons
         _travelTime = 1.3f;
         _fireRate = 0.3f;
 
-        anim = GetComponent<Animator>();
-
     }
     private void Update()
     {
@@ -27,7 +23,6 @@ public class Rifle : Weapons
 
     public override void RefillAmmo()
     {
-        Debug.LogWarning("Ammo Reload Rifle");
         _fullClip = 25;
         _currentClip = _fullClip;
         _reserveAmmo = _fullClip * 4;

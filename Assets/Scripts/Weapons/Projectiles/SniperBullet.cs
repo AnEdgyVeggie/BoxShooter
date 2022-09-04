@@ -19,5 +19,17 @@ public class SniperBullet : Bullet
     {
         
     }
-
+    public override void OnTriggerEnter(Collider other)
+    {
+        Debug.Log(mdamage + " on collision");
+        if (other.tag == "Enviroment")
+        {
+            Destroy(gameObject);
+        }
+        else if (other.tag == "Enemy")
+        {
+            EnemyAI enemy = other.GetComponent<EnemyAI>();
+                enemy.TakeDamage(mdamage);
+        }
+    }
 }

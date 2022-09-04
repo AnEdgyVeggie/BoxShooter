@@ -80,13 +80,13 @@ public class EnemySpawnManager : MonoBehaviour
     {
         _roundUpdate = false;
         _roundEnemiesSpawned = 0;
-        enemies.Clear();
         yield return new WaitForSeconds(3.25f);
         _anim.SetTrigger("RoundChange");
         yield return new WaitForSeconds(3f);
         round++;
         _uiManager.DisplayRound(round);
         yield return new WaitForSeconds(6.5f);
+        enemies.Clear();
         UpdateMaxRoundEnemies();
         if (round % 5 == 0)
         {

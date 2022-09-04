@@ -2,20 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RocketExplosion : MonoBehaviour
+public class RocketExplosion : Explosion
 {
-    private float _damage = 50;
-
-    private void OnTriggerEnter(Collider other)
+    private void Start()
     {
-        if (other.tag == "Enemy")
-        {
-            
-        }
-        if (other.tag == "Player")
-        {
-
-        }
+        _damage = 60;
     }
 
 }
