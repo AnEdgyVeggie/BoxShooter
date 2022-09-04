@@ -5,10 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enviroment
-  - Bullet
   - Enemy
+  - Projectile
   - Rocket
-  - SniperBullet
   layers:
   - Default
   - TransparentFX

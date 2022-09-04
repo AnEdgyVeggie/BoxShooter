@@ -13,7 +13,7 @@ public class RocketLauncher : Weapons
         _currentClip = 1;
         _reserveAmmo = _fullClip * 5;
         _reloadTime = 3;
-        _damage = 45;
+        _damage = 50;
         _travelTime = 10;
     }
 

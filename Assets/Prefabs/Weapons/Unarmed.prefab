@@ -53,4 +53,5 @@ MonoBehaviour:
   _damage: 0
   _onGround: 0
   _onPlayer: 0
-  _weaponplatter: {fileID: 0}
+  _ammunition: {fileID: 0}
+  _player: {fileID: 0}

@@ -9,12 +9,24 @@ public class EnemyAI : MonoBehaviour
     [SerializeField]
     protected NavMeshAgent _navMesh;
     [SerializeField]
-    protected float _aggressionRange, _distanceToTarget, _attackRange;
+    protected float _aggressionRange, _distanceToTarget, _attackRange, _speed = 3, _rotateSpeed = 6, _attackTime = 2;
+    protected bool _canDamage = true;
+
+
     protected Animator _anim;
-    protected float _speed = 3, _rotateSpeed = 5, _attackTime =2;
     protected Player _player;
+
+    [Header("Stats")]
+    protected float _health = 15;
+    protected int _pointsOnHit, _pointsOnDeath, _attackDamage;
+
+    [Header("Loot")]
     [SerializeField]
-    protected bool _atEnviroment = false, _atPlayer = false, _isAttacking = false;
+    protected Loot[] _droppable;
+    [SerializeField]
+    protected bool _isAttacking = false;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -42,7 +54,7 @@ public class EnemyAI : MonoBehaviour
 
     private void FindDistanceToTarget()
     {
-        this._distanceToTarget = Vector3.Distance(this.transform.position, this._player.transform.position);
+        _distanceToTarget = Vector3.Distance(transform.position, _player.transform.position);
 
         if (_distanceToTarget > _navMesh.stoppingDistance)
         {
@@ -70,10 +82,31 @@ public class EnemyAI : MonoBehaviour
     {
 
     }
-
-    public void DestroyEnemy()
+    public void TakeDamage(float damage)
     {
-        Destroy(this.gameObject);
+        if (_canDamage)
+        {
+            _health -= damage;
+            _player.IncreaseScore(_pointsOnHit);
+            _canDamage = false;
+            StartCoroutine(CanDamageRoutine());
+
+            if (_health <= 0)
+            {
+                _player.IncreaseScore(_pointsOnDeath);
+                if (Random.Range(0, 75) == 1)
+                {
+                    Instantiate(_droppable[Random.Range(0, _droppable.Length)], transform.position, Quaternion.identity);
+                }
+                Destroy(gameObject);
+            }
+        }
+    }
+
+    IEnumerator CanDamageRoutine()
+    {
+        yield return new WaitForSeconds(0.05f);
+        _canDamage = true;
     }
 
     public virtual int GetAttackDamage()

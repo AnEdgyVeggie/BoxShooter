@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class LargeZombieAI : EnemyAI
 {
-    ZombieLarge _largeZ;
 
     // Start is called before the first frame update
     public override void Init()
     {
-        _largeZ = GetComponentInChildren<ZombieLarge>();
         _attackTime = 2.5f;
+        _health = 35;
+        _pointsOnDeath = 60;
+        _pointsOnHit = 10;
+        _attackDamage = 45;
     }
 
     // Update is called once per frame
@@ -34,10 +36,4 @@ public class LargeZombieAI : EnemyAI
         _isAttacking = false;
         yield return new WaitForSeconds(_attackTime); 
     }
-
-    public override int GetAttackDamage()
-    {
-        return _largeZ.GetAttackDamage();
-    }
-
 }

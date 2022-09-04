@@ -21,7 +21,7 @@ public class Weapons : MonoBehaviour
     [SerializeField]
     protected bool _onGround = false, _onPlayer = false;
     [SerializeField]
-    private Bullet _ammunition;
+    protected Bullet _ammunition;
     
 
     [SerializeField]
@@ -41,12 +41,22 @@ public class Weapons : MonoBehaviour
         // for inherited classes to set properties
     }
 
+    public virtual void FireWeapon()
+    {
+        Bullet bullet = _ammunition;
+       // bullet.SetDamage(_damage);
+        Instantiate(bullet, transform.position, Quaternion.Euler(0, _player.GetPlayerRotation().y + 90, 90));
+        bullet.GetComponent<Bullet>().mdamage = _damage;
+        _currentClip--;
+        _uiManager.UpdateAmmo(_currentClip, _fullClip);
+    }
+
     protected void OnTriggerStay(Collider other)
     {
         if (other.tag == "Player")
         {
             Player player = other.GetComponentInChildren<Player>();
-            _uiManager.PickUpWeaponText(true);
+            _uiManager.PickUpWeaponText(true); 
             if (Input.GetKeyDown(KeyCode.E))
             {
                 EquipPlayer(player);
@@ -67,7 +77,7 @@ public class Weapons : MonoBehaviour
     {
         player.SwapWeaponWithNew(this);
         _onGround = false;
-        this.transform.SetParent(player.transform, true);
+        transform.SetParent(player.transform, true);
     }
     public virtual void RefillAmmo()
     {
@@ -78,6 +88,33 @@ public class Weapons : MonoBehaviour
     public void RemovePickUpWeaponUI()
     {
         _uiManager.PickUpWeaponText(false);
+    }
+
+    public virtual void ReloadWeapon()
+    {
+        _player.SetIsReloading(true);
+        _player.SetCanFire(false);
+        StartCoroutine(WeaponReloadRoutine());
+    }
+    IEnumerator WeaponReloadRoutine()
+    {
+        int refillAmmo = _fullClip - _currentClip;
+        yield return new WaitForSeconds(_reloadTime);
+        if (_reserveAmmo >= refillAmmo) // determines if loading a full mag
+        {
+            _reserveAmmo -= (_fullClip - _currentClip);
+            _currentClip = _fullClip;
+        }
+        else
+        {
+            _currentClip = _reserveAmmo;
+            _reserveAmmo = 0;
+        }
+        _player.SetIsReloading(false);
+        _player.SetCanFire(true);
+        _player.WeaponStatsGetters();
+        _uiManager.UpdateAmmo(_currentClip, _fullClip);
+        _uiManager.UpdateReserveAmmo(_reserveAmmo.ToString());
     }
 
     /*
@@ -96,11 +133,7 @@ public class Weapons : MonoBehaviour
 
     // SETTERS AND GETTERS
 
-    public void SetAmmoProperties(int weaponClip, int weaponReserves)
-    {
-        _currentClip = weaponClip;
-        _reserveAmmo = weaponReserves;
-    }
+
     public float GetTravelTime() { return _travelTime; }
     public float GetReloadTime() { return _reloadTime; }
     public float GetDamage() { return _damage; }

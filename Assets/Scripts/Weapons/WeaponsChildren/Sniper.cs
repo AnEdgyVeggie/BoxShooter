@@ -21,7 +21,6 @@ public class Sniper : Weapons
     {
         
     }
-
     public override void RefillAmmo()
     {
         _fullClip = 7;

@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class Rocket : Bullet
 {
-    Animator _anim;
     AudioSource _audio;
     bool _hasExploded = false;
+    [SerializeField]
+    GameObject explosion;
 
     public override void Init()
     {
         _bulletSpeed = 15;
-        _anim = GetComponent<Animator>();
         _audio = GetComponent<AudioSource>();
     }
 
@@ -30,9 +30,10 @@ public class Rocket : Bullet
     {
         if (other.tag == "Enviroment" || other.tag == "Enemy")
         {
-            _bulletSpeed = 0.2f;
             HandleExplosion();
-            Destroy(this.gameObject, 2f);
+            _bulletSpeed = 0.2f;
+            
+            Destroy(this.gameObject);
         }
     }
 
@@ -40,7 +41,7 @@ public class Rocket : Bullet
     {
         if (!_hasExploded)
         {
-            _anim.SetTrigger("Explode");
+            Instantiate(explosion, transform.position, Quaternion.identity);
             _audio.Play();
             _hasExploded = true;
         }

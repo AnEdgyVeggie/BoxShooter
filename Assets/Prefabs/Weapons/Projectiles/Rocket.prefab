@@ -542,7 +542,7 @@ GameObject:
   - component: {fileID: 38943631906961165}
   m_Layer: 0
   m_Name: Rocket
-  m_TagString: Rocket
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -594,6 +594,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c0ac28579d6cee4fa0d462c15e05daa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  explosion: {fileID: 7907130581919311787, guid: e00e36ea3f4334b429d8195d80b282ee, type: 3}
 --- !u!54 &9040992795760642798
 Rigidbody:
   m_ObjectHideFlags: 0

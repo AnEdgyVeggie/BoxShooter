@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class BasicZombieAI : EnemyAI
 {
-    BasicZombie _basicZ;
-
     public override void Init()
     {
-        _basicZ = GetComponentInChildren<BasicZombie>();
-
+        _pointsOnDeath = 25;
+        _pointsOnHit = 5;
+        _attackDamage = 20;
     }
 
     // Update is called once per frame
@@ -35,11 +34,4 @@ public class BasicZombieAI : EnemyAI
         yield return new WaitForSeconds(_attackTime);
 
     }
-
-    public override int GetAttackDamage()
-    {
-        return _basicZ.GetAttackDamage();
-    }
-
-
 }

@@ -5,24 +5,27 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     protected float _bulletSpeed = 30;
+    public float mdamage;
+    protected bool _canDamage = true;
 
     protected Rigidbody _rigidBody;
     protected Player _player;
-    protected Enemy _enemy;
+    protected EnemyAI _enemy;
     
     // Start is called before the first frame update
     void Start()
     {
         _rigidBody = GetComponent<Rigidbody>();
         _player = GameObject.Find("Player").GetComponent<Player>();
-        _enemy = GameObject.Find("Enemies").GetComponentInChildren<Enemy>();
+        _enemy = GameObject.Find("Enemies").GetComponentInChildren<EnemyAI>();
         Init();
     }
 
     public virtual void Init()
     {
         // use Init as inherited start classs
-        Destroy(this.gameObject, _player.GetTravelTime());
+        Destroy(gameObject, _player.GetTravelTime());
+
     }
 
     // Update is called once per frame
@@ -37,16 +40,32 @@ public class Bullet : MonoBehaviour
             (Vector3.up * _bulletSpeed * Time.deltaTime);
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void SetDamage(float damage)
     {
-        if (other.tag == "Enviroment")
-        { 
-            Destroy(this.gameObject);
-        }
+        mdamage = damage;
+        Debug.Log(mdamage);
     }
-
     public void SetSpeed(float speed)
     {
         _bulletSpeed = speed;
+    }
+
+    public virtual void OnTriggerEnter(Collider other)
+    {
+        Debug.Log(mdamage + " on collision");
+        if (other.tag == "Enviroment")
+        {
+            Destroy(gameObject);
+        }
+        else if (other.tag == "Enemy")
+        {
+            EnemyAI enemy = other.GetComponent<EnemyAI>();
+            if (_canDamage == true)
+            {
+                _canDamage = false;
+                enemy.TakeDamage(mdamage);
+            }
+            Destroy(gameObject);
+        }
     }
 }

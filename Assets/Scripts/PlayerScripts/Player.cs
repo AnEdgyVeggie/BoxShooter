@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     float _reloadTime, _damage, _travelTime, _fireRate, _nextShot;
     [SerializeField]
-    bool _isReloading = false, _canfire = true, _isRPG = false, _damaged = false;
+    bool _isReloading = false, _canfire = true, _damaged = false;
 
     // SCORE AND OBJECTIVE VARIABLES
     [Header("Score and Objective Variables")]
@@ -91,7 +91,7 @@ public class Player : MonoBehaviour
 
                 if (Input.GetKeyDown(KeyCode.R))
                 {
-                    ReloadWeapon();
+                    _weaponInventory[0].ReloadWeapon();
                 }
 
                 if (_weaponInventory[0].name == "Unarmed")
@@ -109,12 +109,10 @@ public class Player : MonoBehaviour
                 _laser.gameObject.SetActive(false);
                 RocketLauncher rpg = _weaponInventory[0] as RocketLauncher;
                 rpg.TurnOnLaser();
-                _isRPG = true;
             }
             else
             {
                 _laser.gameObject.SetActive(true);
-                _isRPG = false;
             }
         }
 
@@ -126,11 +124,6 @@ public class Player : MonoBehaviour
 
     void FireWeapon()
     {
-        Vector3 weaponPosition = _weaponInventory[0].transform.position;
-        Vector3 playerRotation = _player.transform.eulerAngles;
-
-
-
         if (_nextShot > Time.time)
         {
             return;
@@ -143,23 +136,10 @@ public class Player : MonoBehaviour
             {
                 return;
             }
-            Instantiate(_weaponInventory[0].GetAmmoType(), 
-                new Vector3(weaponPosition.x, weaponPosition.y, weaponPosition.z), Quaternion.Euler(0, playerRotation.y +90, 90));
-            
-            /*
-            if (_isRPG == true)
-            {
-                Instantiate(_rocketPrefab, 
-            new Vector3(weaponPosition.x, weaponPosition.y, weaponPosition.z), Quaternion.Euler(0, playerRotation.y + 90, 90));
-            }
-            else
-            {
-              Instantiate(_bulletPrefab, new Vector3(weaponPosition.x, weaponPosition.y, weaponPosition.z), Quaternion.Euler(0, playerRotation.y + 90, 90));
-                _audio.Play();
-            }
-            */
-            _currentClip--;
-            _uiManager.UpdateAmmo(_currentClip, _fullClip);
+
+            _weaponInventory[0].FireWeapon();
+            _currentClip = _weaponInventory[0].GetCurrentClip();
+
             if (_currentClip == 0)
             {
                 _canfire = false;
@@ -167,56 +147,7 @@ public class Player : MonoBehaviour
         }
         if ((_currentClip < _fullClip && Input.GetKeyDown(KeyCode.R)) || _currentClip == 0 && Input.GetMouseButtonDown(0) && _reserveAmmo > 0)
         {
-            StartCoroutine(WeaponReloadRoutine());
-        }
-    }
-    void ReloadWeapon()
-    {
-        if (_weaponInventory[0].name == "Unarmed")
-        {
-            return;
-        }
-        if (!_isReloading)
-        {
-            _canfire = false;
-            _isReloading = true;
-            StartCoroutine(WeaponReloadRoutine());
-        }
-        else
-        {
-            return;
-        }
-    }
-    IEnumerator WeaponReloadRoutine()
-    {
-        if (_weaponInventory[0].name == "Pistol")
-        {
-            yield return new WaitForSeconds(_reloadTime);
-            _currentClip = _fullClip;
-        }
-
-        int refillAmmo = _fullClip - _currentClip;
-        yield return new WaitForSeconds(_reloadTime);
-        if (_reserveAmmo >= refillAmmo) {
-            _reserveAmmo -= (_fullClip - _currentClip);
-            _currentClip = _fullClip;
-        } 
-        else
-        {
-            _currentClip = _reserveAmmo;
-            _reserveAmmo = 0;
-        }
-        _isReloading = false;
-        _canfire = true;
-        _uiManager.UpdateAmmo(_currentClip, _fullClip);
-
-        if (_weaponInventory[0].name == "Pistol")
-        {
-            _uiManager.UpdateReserveAmmo("");
-        }
-        else
-        {
-            _uiManager.UpdateReserveAmmo(_reserveAmmo.ToString());
+            _weaponInventory[0].ReloadWeapon();
         }
     }
 
@@ -242,7 +173,6 @@ public class Player : MonoBehaviour
 
     private void SwapWeaponInventory()
     {
-        _weaponInventory[0].SetAmmoProperties(_currentClip, _reserveAmmo);
         Weapons temp = _weaponInventory[1];
         _weaponInventory[1] = _weaponInventory[0];
         _weaponInventory[0] = temp;
@@ -279,7 +209,7 @@ public class Player : MonoBehaviour
     }
     
     /// WEAPON STAT GETTERS
-    private void WeaponStatsGetters()
+    public void WeaponStatsGetters()
     {
         _damage = _weaponInventory[0].GetDamage();
         _reloadTime = _weaponInventory[0].GetReloadTime();
@@ -314,6 +244,7 @@ public class Player : MonoBehaviour
     {
         _damagedCounter++;
         _damaged = true;
+        StopCoroutine(RegainHealthRoutine());
         StartCoroutine(SetDamagedRoutine());
 
         if (_armor > 0)
@@ -348,6 +279,7 @@ public class Player : MonoBehaviour
         {
             StartCoroutine(RegainHealthRoutine());
         }
+        
     }
     IEnumerator RegainHealthRoutine()
     {
@@ -412,6 +344,18 @@ public class Player : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
-
+    public Vector3 GetPlayerRotation() 
+    {  
+        Vector3 playerRotation = _player.transform.eulerAngles;
+        return playerRotation;
+    }
+    public void SetCanFire(bool canfire)
+    {
+        _canfire = canfire;
+    }
+    public void SetIsReloading(bool isReloading)
+    {
+        _isReloading = isReloading;
+    }
 
 }

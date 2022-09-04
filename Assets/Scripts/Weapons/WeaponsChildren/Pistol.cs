@@ -19,11 +19,6 @@ public class Pistol : Weapons
         anim = GetComponent<Animator>();
     }
 
-    private void Update()
-    {
-
-    }
-
     public override void RefillAmmo()
     {
         Init();
@@ -37,7 +32,19 @@ public class Pistol : Weapons
         transform.localRotation = Quaternion.identity;
         this.gameObject.layer = LayerMask.NameToLayer("EquippedWeapon");
     }
-
+    public override void ReloadWeapon()
+    {
+        StartCoroutine(PistolReloadRoutine());
+    }
+    IEnumerator PistolReloadRoutine() 
+    {
+         yield return new WaitForSeconds(_reloadTime);
+        _currentClip = _fullClip;
+        _player.SetIsReloading(false);
+        _player.SetCanFire(true);
+        _player.WeaponStatsGetters();
+        _uiManager.UpdateAmmo(_currentClip, _fullClip);
+    }
 
 
 }

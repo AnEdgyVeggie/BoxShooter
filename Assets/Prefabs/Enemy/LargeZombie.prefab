@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8294326143009691579}
   m_Layer: 11
   m_Name: LeftArm
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 1548042987828917431}
   m_Layer: 11
   m_Name: RightArm
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -203,10 +203,9 @@ GameObject:
   - component: {fileID: 6076645592546659971}
   - component: {fileID: 2949869295580529341}
   - component: {fileID: 2128644380178824775}
-  - component: {fileID: 1530193787756002752}
   m_Layer: 11
   m_Name: LargeZombieBody
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -306,21 +305,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
---- !u!114 &1530193787756002752
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5535555022919225637}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 670486ade03da5b4f801dadcc30b7e1f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _droppable:
-  - {fileID: -7083607267863239222, guid: 9268ce37d37db1446817ad5093739c2c, type: 3}
-  - {fileID: -6412763488734895156, guid: b4ca41e17ff52f3479a322a58002798a, type: 3}
 --- !u!1 &7275167676713562752
 GameObject:
   m_ObjectHideFlags: 0
@@ -372,8 +356,12 @@ MonoBehaviour:
   _aggressionRange: 0
   _distanceToTarget: 0
   _attackRange: 0
-  _atEnviroment: 0
-  _atPlayer: 0
+  _speed: 3
+  _rotateSpeed: 6
+  _attackTime: 2
+  _droppable:
+  - {fileID: -7083607267863239222, guid: 9268ce37d37db1446817ad5093739c2c, type: 3}
+  - {fileID: -6412763488734895156, guid: b4ca41e17ff52f3479a322a58002798a, type: 3}
   _isAttacking: 0
 --- !u!65 &1782841040977886579
 BoxCollider:
