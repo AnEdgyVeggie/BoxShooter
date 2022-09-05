@@ -30,7 +30,7 @@ public class Pistol : Weapons
        
         transform.localPosition = new Vector3(0.288f, 0.115f, 0.723f);
         transform.localRotation = Quaternion.identity;
-        this.gameObject.layer = LayerMask.NameToLayer("EquippedWeapon");
+        gameObject.layer = LayerMask.NameToLayer("EquippedWeapon");
     }
     public override void ReloadWeapon()
     {

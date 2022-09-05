@@ -136,10 +136,8 @@ public class Player : MonoBehaviour
             {
                 return;
             }
-
             _weaponInventory[0].FireWeapon();
             _currentClip = _weaponInventory[0].GetCurrentClip();
-
             if (_currentClip == 0)
             {
                 _canfire = false;
@@ -173,6 +171,7 @@ public class Player : MonoBehaviour
 
     private void SwapWeaponInventory()
     {
+        _isReloading = false;
         Weapons temp = _weaponInventory[1];
         _weaponInventory[1] = _weaponInventory[0];
         _weaponInventory[0] = temp;
@@ -196,6 +195,8 @@ public class Player : MonoBehaviour
         _weaponInventory[1].RefillAmmo();
         WeaponStatsGetters();
     }
+
+    // Used for Store to check purchase eligibility
     public bool CheckWeaponsInInventory(Weapons swappable)
     {
         foreach (Weapons weap in _weaponInventory)
@@ -219,7 +220,10 @@ public class Player : MonoBehaviour
         _reserveAmmo = _weaponInventory[0].GetReserveAmmo();
         _fireRate = _weaponInventory[0].GetFireRate();
 
-        _canfire = (_reserveAmmo > 0) ?  true : false;
+        if (_currentClip > 0)
+        {
+            _canfire = true;
+        }
 
         if (_weaponInventory[0].name == "Unarmed" || _weaponInventory[0].name == "Pistol")
         {

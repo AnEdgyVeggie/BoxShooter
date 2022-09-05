@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class RocketExplosion : Explosion
 {
-    private void Start()
+    public override void Init()
     {
+        base.Init();
+        Debug.Log("here");
         _damage = 60;
     }
 
