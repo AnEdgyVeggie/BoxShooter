@@ -23,7 +23,7 @@ public class Player : MonoBehaviour
     float _healTime = 7.5f;
     [SerializeField]
     int _health = 150;
-    bool _gameOver = false;
+    bool _gameOver = false, _grenadeAction = false, _throwGrenade = false, _grenadeExploded = false;
 
 
     [Header("Prefabs")]
@@ -83,6 +83,30 @@ public class Player : MonoBehaviour
                 if (Input.GetMouseButtonDown(0) && _currentClip > 0)
                 {
                     FireWeapon();
+                }
+                // toss throwable
+                if (Input.GetMouseButtonDown(2) && _weaponInventory[2].GetCurrentClip() > 0) 
+                {
+                    _weaponInventory[2].gameObject.SetActive(true);
+                    _grenadeAction = true;
+                    GrenadeWeapon grenade = _weaponInventory[2].GetComponent<GrenadeWeapon>();
+                    grenade.PullPin();
+                }
+                if (Input.GetMouseButtonUp(2) && _grenadeAction)
+                {
+                    GrenadeWeapon grenade = _weaponInventory[2].GetComponent<GrenadeWeapon>();
+                    if (grenade.GetExplodedInHand())
+                    {
+                        grenade.SetExplodedInHand();
+                    }
+                    else
+                    {
+                        _throwGrenade = true;
+                        TossThrowable();
+                        _weaponInventory[2].gameObject.SetActive(false);
+                        _grenadeAction = false;
+                    }
+
                 }
                 if (Input.GetAxisRaw("Scroll") > 0 || Input.GetAxisRaw("Scroll") < 0)
                 {
@@ -239,6 +263,12 @@ public class Player : MonoBehaviour
 
     public float GetDamage() { return _damage; }
     public float GetTravelTime() {   return _travelTime; }
+
+    private void TossThrowable()
+    {
+        _weaponInventory[2].gameObject.SetActive(true);
+        _weaponInventory[2].FireWeapon();
+    }
 
     /// OBJECTIVE METHODS
     /// Score, health, and methods dealing in

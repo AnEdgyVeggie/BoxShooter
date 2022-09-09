@@ -23,22 +23,16 @@ public class Rifle : Weapons
 
     public override void RefillAmmo()
     {
-        _fullClip = 25;
-        _currentClip = _fullClip;
-        _reserveAmmo = _fullClip * 4;
+        Init();
     }
 
     public override void EquipPlayer(Player player)
     {
-
         base.EquipPlayer(player);
-        
         transform.localPosition = new Vector3(0.288f, 0.115f, 1.11f);
         transform.localRotation = Quaternion.identity;
-        transform.Rotate(0, 180, 0);
-        
-        this.gameObject.layer = LayerMask.NameToLayer("EquippedWeapon");
-
+        transform.Rotate(0, 90, 0);
+        gameObject.layer = LayerMask.NameToLayer("EquippedWeapon");
     }
 
 }

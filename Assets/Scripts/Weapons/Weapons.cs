@@ -48,13 +48,11 @@ public class Weapons : MonoBehaviour
     public virtual void FireWeapon()
     {
         Bullet bullet = _ammunition;
-       // bullet.SetDamage(_damage);
         Instantiate(bullet, transform.position, Quaternion.Euler(0, _player.GetPlayerRotation().y + 90, 90));
         bullet.GetComponent<Bullet>().mdamage = _damage;
         _currentClip--;
-        _uiManager.
-            UpdateAmmo(_currentClip, _fullClip);
     }
+
 
     protected void OnTriggerStay(Collider other)
     {

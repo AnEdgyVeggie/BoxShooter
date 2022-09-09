@@ -6,7 +6,7 @@ public class Rocket : Bullet
 {
     bool _hasExploded = false;
     [SerializeField]
-    GameObject explosion;
+    protected GameObject explosion;
 
     public override void Init()
     {
@@ -34,11 +34,11 @@ public class Rocket : Bullet
         }
     }
 
-    private void HandleExplosion()
+    public virtual void HandleExplosion()
     {
         if (!_hasExploded)
         {
-            Instantiate(explosion, transform.position, Quaternion.identity);
+
             _hasExploded = true;
         }
     }

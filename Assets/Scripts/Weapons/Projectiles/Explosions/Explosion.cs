@@ -36,7 +36,7 @@ public class Explosion : MonoBehaviour
             Player player = other.GetComponent<Player>();
             player.DecreaseHealth((int)_damage);
         }
-        Destroy(gameObject, 3f);
+        Destroy(gameObject, 1.5f);
     }
 
 }
